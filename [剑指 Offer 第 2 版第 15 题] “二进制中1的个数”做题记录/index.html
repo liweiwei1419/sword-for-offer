@@ -120,6 +120,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../[剑指 Offer 第 2 版第 16 题] “数值的整数次方”做题记录/">[剑指 Offer 第 2 版第 16 题] “数值的整数次方”做题记录</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../[剑指 Offer 第 2 版第 17 题] “打印从 1 到最大的 n 位数”做题记录/">[剑指 Offer 第 2 版第 17 题] “打印从 1 到最大的 n 位数”做题记录</a>
 	    </li>
           
@@ -482,10 +487,11 @@
 <h2 id="_1">题目描述</h2>
 <p>输入一个整数，输出该数二进制表示中 1 的个数。其中负数用补码表示。</p>
 <h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>熟悉位运算是关键。</li>
-<li>负数左移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0。</li>
-</ul>
+<p>思路1：
++ 熟悉位运算是关键。
++ 负数左移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0。</p>
+<p>思路2：
++ 可以使用 1001 作为测试用例来理解，a&amp;(a-1) 的结果会将 a 最右边的 1 变为 0 ，直到 a = 0，还可以先将 a&amp;1 != 0,然后右移 1 位，但不能计算负数的值。</p>
 <h2 id="_3">参考解答</h2>
 <h3 id="1">参考解答1</h3>
 <pre><code class="java">public class Solution {
@@ -511,6 +517,19 @@
     }
 }
 </code></pre>
+
+<h3 id="2">参考解答2</h3>
+<pre><code class="java">public class Solution2 {
+    public int NumberOf1(int n) {
+        int count = 0;
+        while (n != 0) {
+            count++;
+            n = (n - 1) &amp; n;
+        }
+        return count;
+    }
+}
+</code></pre>
               
             </div>
           </div>
@@ -518,7 +537,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../[剑指 Offer 第 2 版第 17 题] “打印从 1 到最大的 n 位数”做题记录/" class="btn btn-neutral float-right" title="[剑指 Offer 第 2 版第 17 题] “打印从 1 到最大的 n 位数”做题记录">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../[剑指 Offer 第 2 版第 16 题] “数值的整数次方”做题记录/" class="btn btn-neutral float-right" title="[剑指 Offer 第 2 版第 16 题] “数值的整数次方”做题记录">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../[剑指 Offer 第 2 版第 14 题] “剪绳子”做题记录/" class="btn btn-neutral" title="[剑指 Offer 第 2 版第 14 题] “剪绳子”做题记录"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -550,7 +569,7 @@
         <span><a href="../[剑指 Offer 第 2 版第 14 题] “剪绳子”做题记录/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../[剑指 Offer 第 2 版第 17 题] “打印从 1 到最大的 n 位数”做题记录/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../[剑指 Offer 第 2 版第 16 题] “数值的整数次方”做题记录/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

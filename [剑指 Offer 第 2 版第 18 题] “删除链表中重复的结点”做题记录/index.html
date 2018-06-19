@@ -104,6 +104,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../[剑指 Offer 第 2 版第 16 题] “数值的整数次方”做题记录/">[剑指 Offer 第 2 版第 16 题] “数值的整数次方”做题记录</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../[剑指 Offer 第 2 版第 17 题] “打印从 1 到最大的 n 位数”做题记录/">[剑指 Offer 第 2 版第 17 题] “打印从 1 到最大的 n 位数”做题记录</a>
 	    </li>
           
@@ -483,10 +488,76 @@
 <p>在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5</p>
 <h2 id="_2">求解思路与关键</h2>
 <ul>
-<li></li>
+<li>画出示意图，要考虑到连续重复结点出现的情况。</li>
 </ul>
 <h2 id="_3">参考解答</h2>
 <h3 id="1">参考解答1</h3>
+<pre><code class="java">class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    public ListNode(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            throw new IllegalArgumentException(&quot;arr can not be empty&quot;);
+        }
+        this.val = arr[0];
+        ListNode cur = this;
+        for (int i = 1; i &lt; arr.length; i++) {
+            cur.next = new ListNode(arr[i]);
+            cur = cur.next;
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        ListNode cur = this;
+        while (cur != null) {
+            s.append(cur.val + &quot; -&gt; &quot;);
+            cur = cur.next;
+        }
+        s.append(&quot;NULL&quot;);
+        return s.toString();
+    }
+}
+
+public class Solution {
+    public ListNode deleteDuplication(ListNode pHead) {
+        ListNode dummyNode = new ListNode(-1);
+        dummyNode.next = pHead;
+        ListNode curNode = dummyNode;
+        while (curNode.next != null &amp;&amp; curNode.next.next != null) {
+            ListNode next = curNode.next;
+            ListNode nextNext = next.next;
+            if (next.val == nextNext.val) {
+                while (nextNext.next != null &amp;&amp; nextNext.val == nextNext.next.val) {
+                    nextNext = nextNext.next;
+                }
+                ListNode delNode = nextNext;
+                curNode.next = delNode.next;
+                delNode.next = null;
+            } else {
+                curNode = curNode.next;
+            }
+        }
+        return dummyNode.next;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{1, 2, 3, 3, 4, 4, 5};
+        ListNode head = new ListNode(nums);
+        System.out.println(head);
+
+        Solution solution = new Solution();
+        ListNode deleteDuplication = solution.deleteDuplication(head);
+        System.out.println(deleteDuplication);
+    }
+}
+</code></pre>
               
             </div>
           </div>

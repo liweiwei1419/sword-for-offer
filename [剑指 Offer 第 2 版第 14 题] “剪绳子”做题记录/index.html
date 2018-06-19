@@ -120,6 +120,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../[剑指 Offer 第 2 版第 16 题] “数值的整数次方”做题记录/">[剑指 Offer 第 2 版第 16 题] “数值的整数次方”做题记录</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../[剑指 Offer 第 2 版第 17 题] “打印从 1 到最大的 n 位数”做题记录/">[剑指 Offer 第 2 版第 17 题] “打印从 1 到最大的 n 位数”做题记录</a>
 	    </li>
           
@@ -483,10 +488,69 @@
 <p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。</p>
 <h2 id="_2">求解思路与关键</h2>
 <ul>
-<li></li>
+<li>这道题在牛客网上没有 online judge ，我们可以去完成 LeetCode 上第 343 题检验自己的代码是否编写正确。</li>
 </ul>
 <h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<h3 id="1">参考解答1：使用动态规划</h3>
+<pre><code class="java">class Solution {
+    public int integerBreak(int n) {
+        if (n &lt;= 1) {
+            return 1;
+        }
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i &lt;= n; i++) {
+            int max = 0;
+            for (int j = 1; j &lt; i; j++) {
+                max = max3(max, j * (i - j), j * dp[i - j]);
+            }
+            dp[i] = max;
+        }
+        return dp[n];
+    }
+
+    private int max3(int num1, int num2, int num3) {
+        return Integer.max(Integer.max(num1, num2), num3);
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int integerBreak = solution.integerBreak(8);
+        System.out.println(integerBreak);
+    }
+}
+</code></pre>
+
+<h3 id="2">参考解答2：使用贪心算法</h3>
+<pre><code class="java">class Solution2 {
+    public int integerBreak(int n) {
+        if (n &lt;= 2) {
+            return 1;
+        }
+        if (n == 3) {
+            return 2;
+        }
+        if (n == 4) {
+            return 4;
+        }
+        // 接下来就是 n &gt;= 5 的时候的逻辑了
+        int res = 1;
+        while (n &gt; 4) {
+            res *= 3;
+            n -= 3;
+        }
+        res *= n;
+        return res;
+    }
+
+    public static void main(String[] args) {
+        Solution2 solution2 = new Solution2();
+        int integerBreak = solution2.integerBreak(8);
+        System.out.println(integerBreak);
+    }
+}
+</code></pre>
               
             </div>
           </div>
