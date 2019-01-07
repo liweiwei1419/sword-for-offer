@@ -84,11 +84,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 12 题] “矩阵中的路径”做题记录副本/">[剑指 Offer 第 2 版第 12 题] “矩阵中的路径”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 13 题] “机器人的运动范围”做题记录/">[剑指 Offer 第 2 版第 13 题] “机器人的运动范围”做题记录</a>
 	    </li>
           
@@ -390,7 +385,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 60 题] “n 个骰子的点数”做题记录/">[剑指 Offer 第 2 版第 60 题] “n 个骰子的点数”做题记录</a>
+    <a class="" href="../[剑指 Offer 第 2 版第 61 题] “n 个骰子的点数”做题记录/">[剑指 Offer 第 2 版第 61 题] “n 个骰子的点数”做题记录</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -431,11 +426,6 @@
             <li class="toctree-l1">
 		
     <a class="" href="../[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录/">[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录副本/">[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录副本</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -485,7 +475,7 @@
 <li>牛客网 online judge 地址：https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00?tpId=13&amp;tqId=11165&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking</li>
 </ul>
 <h2 id="_1">题目描述</h2>
-<p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。</p>
+<p>给定一个 double 类型的浮点数 base 和 int 类型的整数 exponent 。求 base 的 exponent 次方。</p>
 <h2 id="_2">求解思路与关键</h2>
 <ul>
 <li>
@@ -498,19 +488,21 @@
 <p>注意细节：底数为 0 的时候，指数为负数是没有意义的</p>
 </li>
 <li>
-<p>精确计算，转成浮点数 0.125
-System.out.println((double) 1 / 8);</p>
+<p>精确计算，转成浮点数 0.125：</p>
 </li>
-<li>
-<p>右移 1 位运算等价于“除以 2”</p>
-</li>
+</ul>
+<pre><code class="java">System.out.println((double) 1 / 8);
+</code></pre>
+
+<ul>
+<li>右移 1 位运算等价于“除以 2”：</li>
 </ul>
 <pre><code class="java">// exponent 指数，exponent &gt;&gt; 1 表示将指数除以 2
 System.out.println(exponent &gt;&gt; 1);
 </code></pre>
 
 <ul>
-<li>使用位运算的 与 运算符代替了求余数运算，来判断一个数是奇数还是偶数</li>
+<li>使用位运算的 与 运算符代替了求余数运算，来判断一个数是奇数还是偶数：</li>
 </ul>
 <pre><code class="java">if ((exponent &amp; 1) == 0) {
 </code></pre>

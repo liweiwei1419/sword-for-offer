@@ -84,11 +84,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 12 题] “矩阵中的路径”做题记录副本/">[剑指 Offer 第 2 版第 12 题] “矩阵中的路径”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 13 题] “机器人的运动范围”做题记录/">[剑指 Offer 第 2 版第 13 题] “机器人的运动范围”做题记录</a>
 	    </li>
           
@@ -390,7 +385,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 60 题] “n 个骰子的点数”做题记录/">[剑指 Offer 第 2 版第 60 题] “n 个骰子的点数”做题记录</a>
+    <a class="" href="../[剑指 Offer 第 2 版第 61 题] “n 个骰子的点数”做题记录/">[剑指 Offer 第 2 版第 61 题] “n 个骰子的点数”做题记录</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -431,11 +426,6 @@
             <li class="toctree-l1">
 		
     <a class="" href="../[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录/">[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录副本/">[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录副本</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -487,19 +477,22 @@
 <h2 id="_1">题目描述</h2>
 <p>输入一个整数，输出该数二进制表示中 1 的个数。其中负数用补码表示。</p>
 <h2 id="_2">求解思路与关键</h2>
-<p>思路1：
-+ 熟悉位运算是关键。
-+ 负数左移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0。</p>
-<p>思路2：
-+ 可以使用 1001 作为测试用例来理解，a&amp;(a-1) 的结果会将 a 最右边的 1 变为 0 ，直到 a = 0，还可以先将 a&amp;1 != 0,然后右移 1 位，但不能计算负数的值。</p>
+<p>思路1：请见参考解答1。</p>
+<p>思路2：请见参考解答2。</p>
 <h2 id="_3">参考解答</h2>
 <h3 id="1">参考解答1</h3>
+<ul>
+<li>熟悉位运算是关键。</li>
+<li>负数左移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0。</li>
+</ul>
+<p><img src="https://liweiwei1419.github.io/images/sword-for-offer/15-1.jpg" width="900"></p>
+<p><img src="https://liweiwei1419.github.io/images/sword-for-offer/15-2.jpg" width="900"></p>
 <pre><code class="java">public class Solution {
     public int NumberOf1(int n) {
         int count = 0;
-        // 负数左移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0
-        // 负数左移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0
-        // 负数左移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0
+        // 负数右移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0
+        // 负数右移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0
+        // 负数右移的时候，最高位补 1，因此，为了避免死循环，先要把最高位变成 0
 
         // 为负数的时候，将最高位的 1 变成 0
         // 即由负数变成正数，然后再计算 1 的个数
@@ -519,6 +512,12 @@
 </code></pre>
 
 <h3 id="2">参考解答2</h3>
+<ul>
+<li>可以使用 1001 作为测试用例来理解，a&amp;(a-1) 的结果会将 a 最右边的 1 变为 0 ，直到 a = 0，还可以先将 a&amp;1 != 0,然后右移 1 位，但不能计算负数的值。</li>
+</ul>
+<p><img src="https://liweiwei1419.github.io/images/sword-for-offer/15-3.jpg" width="900"></p>
+<p><img src="https://liweiwei1419.github.io/images/sword-for-offer/15-4.jpg" width="900"></p>
+<p><img src="https://liweiwei1419.github.io/images/sword-for-offer/15-5.jpg" width="900"></p>
 <pre><code class="java">public class Solution2 {
     public int NumberOf1(int n) {
         int count = 0;
