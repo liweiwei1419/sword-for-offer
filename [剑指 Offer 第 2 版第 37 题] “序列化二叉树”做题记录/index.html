@@ -159,11 +159,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
 	    </li>
           
@@ -226,11 +221,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#37">第 37 题：序列化二叉树</a></li>
         
         </ul>
     
@@ -471,17 +462,295 @@
             <div class="section">
               
                 <h1 id="offer-2-37">[剑指 Offer 第 2 版第 37 题] “序列化二叉树”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/cf7e25aa97c04cc1a68c8f040e71fb84?tpId=13&amp;tqId=11214&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
+<h3 id="37">第 37 题：序列化二叉树</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/46/">序列化二叉树</a>，<a href="https://www.nowcoder.com/practice/cf7e25aa97c04cc1a68c8f040e71fb84?tpId=13&amp;tqId=11214&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
 <p>请实现两个函数，分别用来序列化和反序列化二叉树。</p>
-<h2 id="_2">求解思路与关键</h2>
+<p>您需要确保二叉树可以序列化为字符串，并且可以将此字符串反序列化为原始树结构。</p>
+<p>样例：</p>
+<p>你可以序列化如下的二叉树
+<code>8
+   / \
+ 12  2
+       / \
+     6   4</code>
+为：<code>"[8, 12, 2, null, null, 6, 4, null, null, null, null]"</code></p>
+<p><strong>注意</strong>:</p>
 <ul>
-<li></li>
+<li>以上的格式是 AcWing 序列化二叉树的方式，你不必一定按照此格式，所以可以设计出一些新的构造方式。</li>
 </ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+</blockquote>
+<p>分析：总之就是前序遍历。因为“前序遍历”有很好的性质：</p>
+<p><img alt="《剑指 Offer （第 2 版）》第 37 题：序列化二叉树" src="http://upload-images.jianshu.io/upload_images/414598-bc8ea3379cd2ad2c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>说明：根据上面的序列化规则，上图中的二叉树被序列化成字符串 <code>"1，2，4，$，$，$，3，5，$，$，6，$，$"</code> 。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class Solution:
+
+    # 前序遍历
+    def serialize(self, root):
+        &quot;&quot;&quot;Encodes a tree to a single string.
+
+        :type root: TreeNode
+        :rtype: str
+        &quot;&quot;&quot;
+
+        res = ''
+        if root is None:
+            return '! '
+        res += str(root.val)
+        res += ' '
+        res += self.serialize(root.left)
+        res += self.serialize(root.right)
+        return res
+
+    def deserialize(self, data):
+        &quot;&quot;&quot;Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        &quot;&quot;&quot;
+        arr = data.split(' ')
+        return self.__helper(arr)
+
+    def __helper(self, arr):
+        if arr:
+            top = arr.pop(0)
+            if top != '!':
+                root = TreeNode(int(top))
+                root.left = self.__helper(arr)
+                root.right = self.__helper(arr)
+                return root
+            else:
+                return None
+</code></pre>
+
+<p>Python 代码：序列化时候，不用递归，用栈的写法</p>
+<pre><code class="python">class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+class Solution:
+
+    # 前序遍历
+    def serialize(self, root):
+        &quot;&quot;&quot;Encodes a tree to a single string.
+
+        :type root: TreeNode
+        :rtype: str
+        &quot;&quot;&quot;
+
+        res = []
+        if root is None:
+            return '!'
+
+        stack = [root]
+        while stack:
+            top = stack.pop()
+            if top is None:
+                res.append('!')
+            else:
+                stack.append(top.right)
+                stack.append(top.left)
+                res.append(str(top.val))
+        return ' '.join(res)
+
+    def deserialize(self, data):
+        &quot;&quot;&quot;Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        &quot;&quot;&quot;
+        queue = data.split(' ')
+        return self.__build_tree(queue)
+
+    def __build_tree(self, queue):
+        if queue:
+            top = queue.pop(0)
+            if top != '!':
+                root = TreeNode(int(top))
+                root.left = self.__build_tree(queue)
+                root.right = self.__build_tree(queue)
+                return root
+            else:
+                return None
+        # 如果 queue 为空，就什么都不做
+</code></pre>
+
+<p>Java 代码：序列化：前序遍历二叉树存入字符串中，反序列化：根据前序遍历重建二叉树</p>
+<pre><code class="java">import java.util.LinkedList;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+    }
+}
+
+public class Solution {
+
+    /**
+     * 序列化一棵二叉树（其实就是前序遍历）
+     * @param root
+     * @return
+     */
+    public String serialize(TreeNode root) {
+        if (root == null) {
+            return &quot;$,&quot;;
+        }
+        StringBuilder sb = new StringBuilder(root.val + &quot;,&quot;);
+        sb.append(serialize(root.left));
+        sb.append(serialize(root.right));
+        return sb.toString();
+    }
+
+    // 反序列化一棵二叉树
+    public TreeNode deserialize(String str) {
+        String[] strArr = str.split(&quot;,&quot;);
+        LinkedList&lt;String&gt; queue = new LinkedList&lt;&gt;();
+        for (String s : strArr) {
+            queue.addLast(s);
+        }
+        return preOrder(queue);
+    }
+
+    // 使用队列就实现了迭代器的功能
+    private TreeNode preOrder(LinkedList&lt;String&gt; queue) {
+        String s = queue.removeFirst();
+        if (!&quot;$&quot;.endsWith(s)) {
+            TreeNode newNode = new TreeNode(Integer.parseInt(s));
+            newNode.left = preOrder(queue);
+            newNode.right = preOrder(queue);
+            // 理解将新创建的结点返回回去的必要性
+            return newNode;
+        }
+        // 是 &quot;$&quot; 就返回空指针，注意这里的递归方法，会把空指针接在原来的树节点上
+        return null;
+    }
+}
+</code></pre>
+
+<p>另一种写法：</p>
+<p>Java 代码：</p>
+<pre><code class="java">import java.util.LinkedList;
+
+// 前序遍历
+public class Solution2 {
+
+    String Serialize(TreeNode root) {
+        StringBuilder stringBuilder = new StringBuilder();
+        preOrder(root, stringBuilder);
+        return stringBuilder.toString();
+    }
+
+    // 上面函数的辅助函数
+    private void preOrder(TreeNode node, StringBuilder stringBuilder) {
+        if (node == null) {
+            stringBuilder.append(&quot;#&quot;);
+            stringBuilder.append(&quot;,&quot;);
+            return;
+        }
+        stringBuilder.append(node.val);
+        stringBuilder.append(&quot;,&quot;);
+        preOrder(node.left, stringBuilder);
+        preOrder(node.right, stringBuilder);
+    }
+
+    TreeNode Deserialize(String str) {
+        String[] strings = str.split(&quot;,&quot;);
+        int size = strings.length;
+        System.out.println(size);
+        LinkedList&lt;String&gt; queue = new LinkedList&lt;&gt;();
+        for (int i = 0; i &lt; size; i++) {
+            queue.addLast(strings[i]);
+        }
+        return inOrderGenerate(queue);
+    }
+
+    private TreeNode inOrderGenerate(LinkedList&lt;String&gt; queue) {
+        if (queue.isEmpty()) {
+            return null;
+        }
+        String s = queue.removeFirst();
+        if (!&quot;#&quot;.equals(s)) {
+            TreeNode root = new TreeNode(Integer.parseInt(s));
+            root.left = inOrderGenerate(queue);
+            root.right = inOrderGenerate(queue);
+            return root;
+        }
+        return null;
+    }
+}
+</code></pre>
+
+<p>C++ 代码：</p>
+<pre><code class="c++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        string res;
+        dfs_s(root, res);
+        return res;
+    }
+
+    void dfs_s(TreeNode *root, string &amp;res)
+    {
+        if (!root) {
+            res += &quot;null &quot;;
+            return;
+        }
+        res += to_string(root-&gt;val) + ' ';
+        dfs_s(root-&gt;left, res);
+        dfs_s(root-&gt;right, res);
+    }
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        int u = 0;
+        return dfs_d(data, u);
+    }
+
+    TreeNode* dfs_d(string &amp;data, int &amp;u)
+    {
+        if (u == data.size()) return NULL;
+        int k = u;
+        while (data[k] != ' ') k ++ ;
+        if (data[u] == 'n') {
+            u = k + 1;
+            return NULL;
+        }
+        int val = 0;
+        for (int i = u; i &lt; k; i ++ ) val = val * 10 + data[i] - '0';
+        u = k + 1;
+        auto root = new TreeNode(val);
+
+        root-&gt;left = dfs_d(data, u);
+        root-&gt;right = dfs_d(data, u);
+
+        return root;
+    }
+};
+</code></pre>
+
+<p>作者：yxc
+链接：https://www.acwing.com/activity/content/code/content/20710/
+来源：AcWing
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
               
             </div>
           </div>

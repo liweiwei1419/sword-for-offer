@@ -159,11 +159,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
 	    </li>
           
@@ -231,11 +226,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#38">第 38 题：字符串的排列（重要，回溯）</a></li>
         
         </ul>
     
@@ -471,19 +462,58 @@
             <div class="section">
               
                 <h1 id="offer-2-38">[剑指 Offer 第 2 版第 38 题] “字符串的排列”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=13&amp;tqId=11180&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
-<p>输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串 abc ,则打印出由字符 a , b , c 所能排列出来的所有字符串 abc , acb , bac , bca , cab 和 cba 。
-输入描述:
-输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>画图其实是解决这一类问题的关键。</li>
-</ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<h3 id="38">第 38 题：字符串的排列（重要，回溯）</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/47/">数字排列</a>，<a href="https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=13&amp;tqId=11180&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>输入一组数字（可能包含重复数字），输出其所有的排列方式。</p>
+<p>样例：</p>
+<p>输入：<code>[1,2,3]</code></p>
+<p>输出：
+<code>[
+     [1,2,3],
+     [1,3,2],
+     [2,1,3],
+     [2,3,1],
+     [3,1,2],
+     [3,2,1]
+   ]</code></p>
+</blockquote>
+<p>分析：八皇后问题根据排列组合来求解，关键是判定不符合要求的解。回溯：时间复杂度是 $O(n!)$。</p>
+<p>题目描述：跟 LeetCode 47. Permutations II 一模一样，都是不重复的全排列。注意区分上一道题 LeetCode 46. Permutations 。</p>
+<p>Python 代码：学会使用位运算判重</p>
+<pre><code class="python">class Solution:
+    def permutation(self, nums):
+        &quot;&quot;&quot;
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        &quot;&quot;&quot;
+
+        l = len(nums)
+        res = []
+        if l == 0:
+            return res
+        # 因为含有重复数组，所以先排序
+        nums.sort()
+        path = [0 for _ in range(l)]
+        self.__dfs(nums, 0, 0, path, 0, res)
+
+        return res
+
+    def __dfs(self, nums, index, start, path, state, res):
+        if index == len(nums):
+            res.append(path[:])
+            return
+
+        if index == 0 or nums[index] != nums[index - 1]:
+            start = 0
+
+        for i in range(start, len(nums)):
+            if (state &gt;&gt; i &amp; 1) == 0:
+                path[i] = nums[index]
+                self.__dfs(nums, index + 1, i + 1, path, state + (1 &lt;&lt; i), res)
+</code></pre>
+
+<p>Java 代码：</p>
 <pre><code class="java">import java.util.ArrayList;
 import java.util.Stack;
 

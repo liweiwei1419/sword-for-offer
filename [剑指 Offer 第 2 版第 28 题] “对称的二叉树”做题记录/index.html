@@ -161,21 +161,12 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#28">第 28 题：对称的二叉树</a></li>
         
         </ul>
     
 
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -471,17 +462,30 @@
             <div class="section">
               
                 <h1 id="offer-2-28">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=13&amp;tqId=11211&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
-<p>请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>画图画到第 4 层就非常清晰了。</li>
-</ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<h3 id="28">第 28 题：对称的二叉树</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/38/">对称的二叉树</a>，<a href="https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=13&amp;tqId=11211&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>请实现一个函数，用来判断一棵二叉树是不是对称的。</p>
+<p>如果一棵二叉树和它的镜像一样，那么它是对称的。</p>
+<p>样例：</p>
+<p>如下图所示二叉树 <code>[1,2,2,3,4,4,3,null,null,null,null,null,null,null,null]</code> 为对称二叉树：
+<code>1
+      / \
+    2   2
+  / \ / \
+3  4 4  3</code>
+如下图所示二叉树 <code>[1,2,2,null,4,4,3,null,null,null,null,null,null]</code> 不是对称二叉树：
+<code>1
+      / \
+    2   2
+      \ / \
+      4 4  3</code></p>
+</blockquote>
+<p>分析：LeetCode 上有类似的问题，使用双端队列可以完成，画图画到第 4 层就非常清晰了。</p>
+<p><img alt="image-20190107113200915" src="http://upload-images.jianshu.io/upload_images/414598-a9a9a131ace0226e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>同 LeetCode 第  101 题。</p>
+<p>解法1：递归写法。</p>
+<p>Java 代码：</p>
 <pre><code class="java">class TreeNode {
     int val = 0;
     TreeNode left = null;
@@ -512,6 +516,130 @@ public class Solution {
     }
 }
 </code></pre>
+
+<p>Python 代码：</p>
+<pre><code class="python"># Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+# 递归写法：得引入辅助函数
+
+class Solution(object):
+    def isSymmetric(self, root):
+        &quot;&quot;&quot;
+        :type root: TreeNode
+        :rtype: bool
+        &quot;&quot;&quot;
+        # 先写递归终止条件
+        if root is None:
+            return True
+        return self.__helper(root.left, root.right)
+
+    def __helper(self, p1, p2):
+        if p1 is None and p2 is None:
+            return True
+        if p1 is None or p2 is None:
+            return False
+        return p1.val == p2.val and self.__helper(p1.left, p2.right) and self.__helper(p1.right, p2.left)
+</code></pre>
+
+<p>解法2：非递归写法，借助双端队列辅助判断。自己画一个图，就好理解了。</p>
+<p><img alt="image" src="http://upload-images.jianshu.io/upload_images/414598-8c228afcf859232e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>Python 代码：</p>
+<pre><code class="python"># Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+# 非递归写法：借助双端队列辅助判断
+
+class Solution(object):
+    def isSymmetric(self, root):
+        &quot;&quot;&quot;
+        :type root: TreeNode
+        :rtype: bool
+        &quot;&quot;&quot;
+        # 先写递归终止条件
+        if root is None:
+            return True
+
+        # 其实应该用 from collections import deque
+        deque = []
+
+        deque.insert(0, root.left)
+        deque.append(root.right)
+
+        while deque:
+            l_node = deque.pop(0)
+            r_node = deque.pop()
+
+            # 这一步一定不要忘记了
+            if l_node is None and r_node is None:
+                continue
+            if l_node is None or r_node is None:
+                return False
+            # 代码走到这里一定有 l_node 和 r_node 非空
+            # 因此可以取出 val 进行判断了
+            if l_node.val != r_node.val:
+                return False
+            deque.insert(0, l_node.right)
+            deque.insert(0, l_node.left)
+            deque.append(r_node.left)
+            deque.append(r_node.right)
+        return True
+</code></pre>
+
+<p>“大雪菜”的写法：用栈模拟递归，对根结点的左子树，我们用中序遍历；对根结点的右子树，我们用反中序遍历。
+则两个子树互为镜像，当且仅当同时遍历两棵子树时，对应结点的值相等。</p>
+<p>时间复杂度：树中每个结点仅被遍历一遍，所以时间复杂度是 $O(n)$。</p>
+<p>C++ 代码：</p>
+<pre><code class="c++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if (!root) return true;
+        stack&lt;TreeNode*&gt; left, right;
+        TreeNode *lc = root-&gt;left;
+        TreeNode *rc = root-&gt;right;
+        while(lc || rc || left.size())
+        {
+            while (lc &amp;&amp; rc)
+            {
+                left.push(lc), right.push(rc);
+                lc = lc-&gt;left, rc = rc-&gt;right;
+            }
+            if (lc || rc) return false;
+            lc = left.top(), rc = right.top();
+            left.pop(), right.pop();
+            if (lc-&gt;val != rc-&gt;val) return false;
+            // 这里反过来操作
+            lc = lc-&gt;right, rc = rc-&gt;left;
+        }
+        return true;
+    }
+
+};
+</code></pre>
+
+<p>作者：yxc
+链接：https://www.acwing.com/solution/AcWing/content/747/
+来源：AcWing
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
               
             </div>
           </div>
@@ -519,7 +647,7 @@ public class Solution {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/" class="btn btn-neutral float-right" title="[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/" class="btn btn-neutral float-right" title="[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../[剑指 Offer 第 2 版第 27 题] “二叉树的镜像”做题记录/" class="btn btn-neutral" title="[剑指 Offer 第 2 版第 27 题] “二叉树的镜像”做题记录"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -551,7 +679,7 @@ public class Solution {
         <span><a href="../[剑指 Offer 第 2 版第 27 题] “二叉树的镜像”做题记录/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

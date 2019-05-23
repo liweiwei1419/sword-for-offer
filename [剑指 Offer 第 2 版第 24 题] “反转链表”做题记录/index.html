@@ -146,11 +146,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#24">第 24 题：输入一个链表，反转链表后，输出链表的所有元素</a></li>
         
         </ul>
     
@@ -171,11 +167,6 @@
             <li class="toctree-l1">
 		
     <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -471,18 +462,44 @@
             <div class="section">
               
                 <h1 id="offer-2-24">[剑指 Offer 第 2 版第 24 题] “反转链表”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&amp;tqId=11168&amp;tPage=1&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
-<p>输入一个链表，反转链表后，输出链表的所有元素。</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>这道题同 LeetCode 上一道问题，可以使用“穿针引线”也可以使用递归求解。</li>
-<li>个人觉得递归的方式比较简单，但是在链表较长的时候，递归效率偏低，因为到使用到系统栈。</li>
-</ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<h3 id="24">第 24 题：输入一个链表，反转链表后，输出链表的所有元素</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/33/">AcWing：反转链表</a>，<a href="https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&amp;tqId=11168&amp;tPage=1&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表的头结点。</p>
+<p>样例：</p>
+<p>输入：<code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code></p>
+<p>输出：<code>5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</code></p>
+</blockquote>
+<p>分析：这道题同 LeetCode 上一道问题，可以使用“穿针引线”也可以使用递归求解。个人觉得递归的方式比较简单，但是在链表较长的时候，递归效率偏低，因为要使用系统栈。</p>
+<p>思路1：递归。</p>
+<p>Python 代码：</p>
+<pre><code class="python"># Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# 递归写法：用递归就不用思考穿针引线这种事情了。
+
+
+class Solution:
+    def reverseList(self, head):
+        &quot;&quot;&quot;
+        :type head: ListNode
+        :rtype: ListNode
+        &quot;&quot;&quot;
+        # 递归的终止条件一定要写对：考虑结点为空和单结点的情况
+        if head is None or head.next is None:
+            return head
+        next = head.next
+        new_head = self.reverseList(next)
+        next.next = head
+        head.next = None
+        return new_head
+
+</code></pre>
+
+<p>Java 代码：</p>
 <pre><code class="java">class ListNode {
     int val;
     ListNode next = null;
@@ -507,6 +524,36 @@ public class Solution {
     }
 
 }
+</code></pre>
+
+<p>思路2：非递归写法，穿针引线。</p>
+<p><img alt="《剑指 Offer》（第 2 版）第 24 题：反转链表" src="http://upload-images.jianshu.io/upload_images/414598-5c6af33f6a632c55.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>Python 代码：</p>
+<pre><code class="python"># Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# 穿针引线，可以看到 while 循环体部分的代码是首尾相连的，有些单链表的题目也有这种规律，感觉很神奇
+# 在 Python 中，其实还有更简便的写法，就跟斐波拉契数列一样
+
+
+class Solution:
+    def reverseList(self, head):
+        &quot;&quot;&quot;
+        :type head: ListNode
+        :rtype: ListNode
+        &quot;&quot;&quot;
+
+        pre = None
+        cur = head
+        while cur:
+            next = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next
+        return pre
 </code></pre>
               
             </div>

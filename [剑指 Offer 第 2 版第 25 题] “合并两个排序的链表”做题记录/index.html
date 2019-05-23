@@ -151,11 +151,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#25">第 25 题：合并排序的链表</a></li>
         
         </ul>
     
@@ -171,11 +167,6 @@
             <li class="toctree-l1">
 		
     <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -471,18 +462,48 @@
             <div class="section">
               
                 <h1 id="offer-2-25">[剑指 Offer 第 2 版第 25 题] “合并两个排序的链表”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&amp;tqId=11169&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
+<h3 id="25">第 25 题：合并排序的链表</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/34/">AcWing：合并两个排序的链表</a>，<a href="https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&amp;tqId=11169&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
 <p>输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>LeetCode 上有同样的问题，我在那个问题的求解中做了详细记录。</li>
-<li>这是一道经典的问题，可以使用“穿针引线”，也可以使用递归求解，个人觉得递归的代码比较简洁易懂。“穿针引线”则要画图。</li>
-</ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<p>样例：</p>
+<p>输入：<code>1-&gt;3-&gt;5</code> , <code>2-&gt;4-&gt;5</code></p>
+<p>输出：<code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;5</code></p>
+</blockquote>
+<p>分析：同 LeetCode 第 21 题，传送门：<a href="https://leetcode-cn.com/problems/merge-two-sorted-lists/description/">21. 合并两个有序链表</a>。这是一道经典的问题，可以使用“穿针引线”，也可以使用递归求解，个人觉得递归的代码比较简洁易懂。“穿针引线”则要画图。</p>
+<p>思路1： 使用递归，编码简单。</p>
+<p>Python 代码：</p>
+<pre><code class="python"># Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+
+class Solution(object):
+    def merge(self, l1, l2):
+        &quot;&quot;&quot;
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        &quot;&quot;&quot;
+
+        if l1 is None:
+            return l2
+        if l2 is None:
+            return l1
+
+        # 代码能走到这里说明 l1 和 l2 均非空
+        # 比较哪个小就行了
+        if l1.val &lt; l2.val:
+            l1.next = self.merge(l1.next, l2)
+            return l1
+        # 走到这里 l1.val &gt;= l2.val
+        l2.next = self.merge(l1, l2.next)
+        return l2
+</code></pre>
+
+<p>Java 代码：</p>
 <pre><code class="java">class ListNode {
     int val;
     ListNode next = null;
@@ -509,6 +530,54 @@ public class Solution {
         }
     }
 }
+</code></pre>
+
+<p>思路2：穿针引线。</p>
+<p><img alt="image" src="http://upload-images.jianshu.io/upload_images/414598-22b6d8c06ffef176.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p><img alt="image" src="http://upload-images.jianshu.io/upload_images/414598-96261cfbaebed718.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>Python 代码：</p>
+<pre><code class="python"># Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
+# 穿针引线的写法，一定要画图才能写出来
+# 比较麻烦，还是递归处理简单
+
+class Solution(object):
+    def merge(self, l1, l2):
+        &quot;&quot;&quot;
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        &quot;&quot;&quot;
+        # 引入头结点可以简化对问题的讨论
+        dummy_node = ListNode(-1)
+        cur_node = dummy_node
+        p1 = l1
+        p2 = l2
+
+        while p1 and p2:
+            # 两者都不为空，才须要比较
+            # 其中有一个为空的时候，把其中一个接到另一个尾巴就好了
+            if p1.val &lt; p2.val:
+                # next 指针修改
+                cur_node.next = p1
+                # p1 后移
+                p1 = p1.next
+            else:
+                cur_node.next = p2
+                p2 = p2.next
+            cur_node = cur_node.next
+        # 跳出循环的时候，一定有：p1 为空或者 p2 为空
+        # 其中有一个为空的时候，把其中一个接到另一个尾巴就好了
+        if p1 is None:  # 这一句写成 if not p1 也是可以的，不过不好理解
+            cur_node.next = p2
+        if not p2:
+            cur_node.next = p1
+        return dummy_node.next
 </code></pre>
               
             </div>

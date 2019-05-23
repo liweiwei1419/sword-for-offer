@@ -159,11 +159,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
 	    </li>
           
@@ -216,11 +211,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#35">第 35 题：复杂链表的复制</a></li>
         
         </ul>
     
@@ -471,18 +462,70 @@
             <div class="section">
               
                 <h1 id="offer-2-35">[剑指 Offer 第 2 版第 35 题] “复杂链表的复制”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：
-https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba?tpId=13&amp;tqId=11178&amp;tPage=2&amp;rp=2&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
-<p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>特别注意：在复制“指针”的时候，对空对象的判定，画图是十分关键的。</li>
-</ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<h3 id="35">第 35 题：复杂链表的复制</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/89/">复杂链表的复刻</a>，<a href="https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba?tpId=13&amp;tqId=11178&amp;tPage=2&amp;rp=2&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>请实现一个函数可以复制一个复杂链表。</p>
+<p>在复杂链表中，每个结点除了有一个指针指向下一个结点外，还有一个额外的指针指向链表中的任意结点或者 null 。</p>
+</blockquote>
+<p>分析：一些细节要考虑到，特别是空结点的判断，以下两种方法都要遍历链表一遍以上，即遍历链表一遍是不够的。</p>
+<p>思路1：有点巧妙，穿针引线，新旧断开。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+        self.random = None
+
+
+class Solution(object):
+    def copyRandomList(self, head):
+        &quot;&quot;&quot;
+        :type head: ListNode
+        :rtype: ListNode
+        &quot;&quot;&quot;
+        if head is None:
+            return None
+
+        # 第 1 步：根据 next 指针复制出一个新旧合一的链表
+        cur_node = head
+        while cur_node:
+            # 先暂存 cur_node 的 next_node 下一次遍历要用
+            next_node = cur_node.next
+
+            new_node = ListNode(cur_node.val)
+
+            cur_node.next = new_node
+            new_node.next = next_node
+            # 指针遍历到下一个结点
+            cur_node = next_node
+        # 第 2 步：根据旧结点 random 指针，给新结点的 random 指针做出正确的指向
+        cur_node = head
+        while cur_node:
+            new_node = cur_node.next
+            # 同样要先暂存 cur_node.next_node
+            next_node = new_node.next
+            # 要记得做非空判断，因为题目中说了 random 有可能为空
+            new_node.random = cur_node.random.next if cur_node.random else None
+            cur_node = next_node
+
+        # 第 3 步：旧结点和新结点分离（拆分链表）
+        cur_node = head
+        res = cur_node.next
+        while cur_node:
+            new_node = cur_node.next
+            # 同样要先暂存下一个结点
+            next_node = new_node.next
+            # 恢复原始结点
+            cur_node.next = new_node.next
+            # 恢复拷贝结点
+            # 这里也要同样注意空指针的问题，克隆结点的最后一个结点的下一个结点是 null
+            new_node.next = next_node.next if next_node else None
+            cur_node = next_node
+        return res
+</code></pre>
+
+<p>Java 代码：</p>
 <pre><code class="java">class RandomListNode {
     int label;
     RandomListNode next = null;
@@ -545,7 +588,142 @@ public class Solution {
 }
 </code></pre>
 
-<h3 id="2">参考解答2</h3>
+<p>C++ 写法：</p>
+<p><img alt="《剑指 Offer （第 2 版）》第 35 题：复杂链表的复制" src="http://upload-images.jianshu.io/upload_images/414598-84ee91641c69db44.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>Java 版本里面还有一个网友的写法。</p>
+<p>思路2：使用哈希表，复制出随机访问的指针。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+        self.random = None
+
+
+class Solution(object):
+    def copyRandomList(self, head):
+        &quot;&quot;&quot;
+        :type head: ListNode
+        :rtype: ListNode
+        &quot;&quot;&quot;
+        if head is None:
+            return None
+        map = dict()
+        dummy_node = ListNode(-1)
+        # p 指针用于新链表的 next 指针赋值
+        p = dummy_node
+
+        # 遍历一次链表，做两件事
+        # 1、复制结点
+        # 2、只管 next 指针
+        cur_node = head
+        while cur_node:
+            new_node = ListNode(cur_node.val)
+            # 把新旧结点的对应关系放在一个 map 里
+            map[cur_node] = new_node
+            cur_node = cur_node.next
+
+            p.next = new_node
+            p = new_node
+
+        # 接下来做随机指针的复制
+        for old_node, new_node in map.items():
+            # 要记得判断是否为空，否则 None 不能作为 map  key
+            if old_node.random:
+                new_node.random = map[old_node.random]
+        return dummy_node.next
+</code></pre>
+
+<p>Java 代码：</p>
+<pre><code class="java">public class Solution3 {
+    public RandomListNode Clone(RandomListNode pHead) {
+        Map&lt;RandomListNode, RandomListNode&gt; map = new HashMap&lt;&gt;();
+        RandomListNode curNode = pHead;
+        // 体会这里设置虚拟头结点的必要性
+        RandomListNode dummyNode = new RandomListNode(-1);
+        RandomListNode p = dummyNode;
+        // 完成复制 next 结点，并且将对应关系放入 Hash 表
+        while (curNode != null) {
+            RandomListNode newNode = new RandomListNode(curNode.label);
+            map.put(curNode, newNode);
+            curNode = curNode.next;
+            p.next = newNode;
+            p = newNode;
+        }
+        // 完成复制链表的 random 指针的赋值
+        Set&lt;Map.Entry&lt;RandomListNode, RandomListNode&gt;&gt; entrySet = map.entrySet();
+        for (Map.Entry&lt;RandomListNode, RandomListNode&gt; entry : entrySet) {
+            entry.getValue().random = map.get(entry.getKey().random);
+        }
+        return dummyNode.next;
+    }
+}
+</code></pre>
+
+<p>Java 代码：特别注意：在复制“指针”的时候，对空对象的判定，画图是十分关键的。</p>
+<pre><code class="java">class RandomListNode {
+    int label;
+    RandomListNode next = null;
+    RandomListNode random = null;
+
+    RandomListNode(int label) {
+        this.label = label;
+    }
+}
+
+public class Solution {
+    public RandomListNode Clone(RandomListNode pHead) {
+        // 极端情况，一定要写先出来
+        if (pHead == null) {
+            return null;
+        }
+
+        RandomListNode curNode = pHead;
+        // 第 1 步：根据 next 指针复制出一个新旧合一的链表
+        // 此时，奇数索引（从 1 开始计算）的结点是旧的结点，偶数索引的结点是新的结点
+        RandomListNode nextNode;
+        RandomListNode copyNode;
+        while (curNode != null) {
+            nextNode = curNode.next;
+            copyNode = new RandomListNode(curNode.label);
+            curNode.next = copyNode;
+            copyNode.next = nextNode;
+            curNode = nextNode;
+        }
+
+        // 第 2 步：根据旧结点 random 指针，给新结点的 random 指针做出正确的指向
+        // 指针复位到起始结点
+        curNode = pHead;
+        while (curNode != null) {
+            copyNode = curNode.next;
+            nextNode = copyNode.next;
+            // 特别注意
+            // 特别注意
+            // 特别注意：有的结点很可能 random 的指向为空（题目中明确说明）
+            // 所以：只要遇到 next 引用的时候，一定要注意判断是否为空
+            copyNode.random = curNode.random == null ? null : curNode.random.next;
+            curNode = nextNode;
+        }
+
+        // 第 3 步：旧结点和新结点分离（拆分链表）
+        curNode = pHead;
+        RandomListNode res = pHead.next;
+        while (curNode != null) {
+            copyNode = curNode.next;
+            nextNode = copyNode.next;
+            // 恢复原始结点
+            curNode.next = copyNode.next;
+            // 恢复拷贝结点
+            // 这里也要同样注意空指针的问题，克隆结点的最后一个结点的下一个结点是 null
+            copyNode.next = copyNode.next == null ? null : copyNode.next.next;
+            curNode = nextNode;
+        }
+        return res;
+    }
+}
+</code></pre>
+
+<p>Java 代码：</p>
 <pre><code class="java">import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

@@ -159,11 +159,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
 	    </li>
           
@@ -201,11 +196,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#32-3">第 32-3 题：之字形打印二叉树</a></li>
         
         </ul>
     
@@ -471,17 +462,133 @@
             <div class="section">
               
                 <h1 id="offer-2-32_3">[剑指 Offer 第 2 版第 32_3 题] “按之字形顺序打印二叉树”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0?tpId=13&amp;tqId=11212&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
-<p>请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li></li>
-</ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<h3 id="32-3">第 32-3 题：之字形打印二叉树</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/43/">之字形打印二叉树</a>，<a href="https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0?tpId=13&amp;tqId=11212&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>请实现一个函数按照之字形顺序从上向下打印二叉树。</p>
+<p>即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。</p>
+<p>样例：</p>
+<p>输入如下图所示二叉树 <code>[8, 12, 2, null, null, 6, 4, null, null, null, null]</code>
+<code>8
+    / \
+  12  2
+      / \
+     6   4</code>
+输出：<code>[[8], [2, 12], [6, 4]]</code></p>
+</blockquote>
+<p>思路：设置一个向左向右的变量更换当前层元素的插入方式即可。</p>
+<p>Python 代码：</p>
+<pre><code class="python"># 样例
+# 输入如下图所示二叉树[8, 12, 2, null, null, 6, 4, null, null, null, null]
+#     8
+#    / \
+#   12  2
+#      / \
+#     6   4
+# 输出：[[8], [2, 12], [6, 4]]
+
+# Definition for a binary tree node.
+
+
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+class Solution(object):
+    def printFromTopToBottom(self, root):
+        &quot;&quot;&quot;
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        &quot;&quot;&quot;
+        if root is None:
+            return []
+        queue = [root]
+        res = []
+        turn_left = True
+        while queue:
+            cur_list = []
+            size = len(queue)
+            for _ in range(size):
+                top = queue.pop(0)
+                if turn_left:
+                    cur_list.append(top.val)
+                else:
+                    cur_list.insert(0, top.val)
+                if top.left:
+                    queue.append(top.left)
+                if top.right:
+                    queue.append(top.right)
+            res.append(cur_list)
+            turn_left = not turn_left
+        return res
+</code></pre>
+
+<p>Java 代码：</p>
+<pre><code class="java">import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Stack;
+
+class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+
+public class Solution {
+    public ArrayList&lt;ArrayList&lt;Integer&gt;&gt; Print(TreeNode pRoot) {
+        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();
+        if (pRoot == null) {
+            return res;
+        }
+        LinkedList&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+        queue.addLast(pRoot);
+        boolean right = true;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            // 之 字形 一开始向右
+            ArrayList&lt;Integer&gt; curLevel = new ArrayList&lt;&gt;();
+            Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;();
+            for (int i = 0; i &lt; size; i++) {
+                if (right) {
+                    TreeNode node = queue.removeFirst();
+                    curLevel.add(node.val);
+                    if (node.left != null) {
+                        stack.add(node.left);
+                    }
+                    if (node.right != null) {
+                        stack.add(node.right);
+                    }
+                } else {
+                    TreeNode node = queue.removeFirst();
+                    curLevel.add(node.val);
+                    if (node.right != null) {
+                        stack.add(node.right);
+                    }
+                    if (node.left != null) {
+                        stack.add(node.left);
+                    }
+                }
+            }
+            while (!stack.isEmpty()) {
+                queue.addLast(stack.pop());
+            }
+            right = !right;
+            res.add(curLevel);
+        }
+        return res;
+    }
+
+}
+</code></pre>
               
             </div>
           </div>

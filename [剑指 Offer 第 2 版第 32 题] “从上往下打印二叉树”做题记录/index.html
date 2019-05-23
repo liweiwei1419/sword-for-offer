@@ -159,11 +159,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
 	    </li>
           
@@ -191,11 +186,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#32-1">第 32-1 题：不分行从上往下打印二叉树</a></li>
         
         </ul>
     
@@ -471,20 +462,55 @@
             <div class="section">
               
                 <h1 id="offer-2-32">[剑指 Offer 第 2 版第 32 题] “从上往下打印二叉树”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/7fe2212963db4790b57431d9ed259701?tpId=13&amp;tqId=11175&amp;tPage=2&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
-<p>从上往下打印出二叉树的每个节点，同层节点从左至右打印。</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>其实就是层序遍历，使用的辅助的数据结构是“队列”，在遍历的过程中，注意到一些细节就可以了。</li>
-<li>在实现的过程中，要防止：</li>
-</ul>
+<h3 id="32-1">第 32-1 题：不分行从上往下打印二叉树</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/41/">不分行从上往下打印二叉树</a>，<a href="https://www.nowcoder.com/practice/7fe2212963db4790b57431d9ed259701?tpId=13&amp;tqId=11175&amp;tPage=2&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>从上往下打印出二叉树的每个结点，同一层的结点按照从左到右的顺序打印。</p>
+<p>样例：</p>
+<p>输入如下图所示二叉树 <code>[8, 12, 2, null, null, 6, null, 4, null, null, null]</code>
+<code>8
+    / \
+  12  2
+      /
+     6
+    /
+  4</code></p>
+<p>输出：<code>[8, 12, 2, 6, 4]</code></p>
+</blockquote>
+<p>思路：层序遍历，借助利用队列实现。其实就是层序遍历，使用的辅助的数据结构是“队列”，在遍历的过程中，注意到一些细节就可以了。在实现的过程中，要防止：</p>
 <p>1、将空元素放入队列；
 2、队列元素出队的时候，先判断队列是否为空，非空才可以出队。</p>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<p>Python 代码：</p>
+<pre><code class="python"># Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+class Solution:
+    def printFromTopToBottom(self, root):
+        &quot;&quot;&quot;
+        :type root: TreeNode
+        :rtype: List[int]
+        &quot;&quot;&quot;
+        if root is None:
+            return []
+        queue = [root]
+        res = []
+        while queue:
+            # 弹出队首元素，索引编号 0 不要忘记写了
+            top = queue.pop(0)
+            res.append(top.val)
+            if top.left:
+                queue.append(top.left)
+            if top.right:
+                queue.append(top.right)
+        return res
+</code></pre>
+
+<p>Java 代码：</p>
 <pre><code class="java">import java.util.ArrayList;
 import java.util.LinkedList;
 

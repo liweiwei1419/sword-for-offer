@@ -159,11 +159,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
 	    </li>
           
@@ -239,7 +234,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录/">[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录</a>
+    <a class="" href="../[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录/">[剑指 Offer 第 2 版第 40 题] “最小的 K 个数”做题记录</a>
 	    </li>
           
             <li class="toctree-l1 current">
@@ -253,9 +248,9 @@
         
             <li><a class="toctree-l3" href="#_1">题目描述</a></li>
         
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
+            <li><a class="toctree-l3" href="#_3">求解思路与关键</a></li>
         
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#_4">参考解答</a></li>
         
         </ul>
     
@@ -471,17 +466,137 @@
             <div class="section">
               
                 <h1 id="offer-2-41">[剑指 Offer 第 2 版第 41 题] “数据流中的中位数”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=13&amp;tqId=11216&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking</li>
-</ul>
+<p>传送门：<a href="https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=13&amp;tqId=11216&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<p>我们这里使用 AcWing 上面的在线测评系统，传送门：<a href="https://www.acwing.com/problem/content/88/">《剑指 Offer 》（第 2 版）第 41 题：数据流中的中位数</a>。</p>
 <h2 id="_1">题目描述</h2>
-<p>如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li></li>
-</ul>
-<h2 id="_3">参考解答</h2>
+<p>如何得到一个数据流中的中位数？</p>
+<p>如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。</p>
+<p>如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。</p>
+<h4 id="_2">样例</h4>
+<pre><code>输入：1, 2, 3, 4
+
+输出：1,1.5,2,2.5
+
+解释：每当数据流读入一个数据，就进行一次判断并输出当前的中位数。
+</code></pre>
+
+<h2 id="_3">求解思路与关键</h2>
+<p><img alt="image-20190110150930077" src="https://ws2.sinaimg.cn/large/006tNc79ly1fz1i9awjcsj30w20lc4qp.jpg" /></p>
+<p>同 LeetCode 第 295 题，传送门：<a href="https://leetcode-cn.com/problems/find-median-from-data-stream">数据流的中位数</a>。</p>
+<p>思路：借助两个堆，一个小顶堆，一个大顶堆。</p>
+<p><strong>任何时刻，两个堆中应该始终保持的性质</strong>：</p>
+<p>1、小顶堆中最小的元素，都不会小于大顶堆中的元素；</p>
+<p>2、小顶堆的元素数目或者与大顶堆的元素数组相等，或者多 1 。</p>
+<p>因此，我们可以针对当前元素的个数进行分类讨论：</p>
+<p>1、当前元素个数为偶数的时候，比如一开始的时候，读入一个元素（最终应该是小顶堆中多一个元素），此时元素个数是奇数，我们应该返回小顶堆中的堆顶元素；</p>
+<p><strong>如何保持性质</strong>：因为最终应该是小顶堆中多一个元素，所以先经过大顶堆，然后再到小顶堆。</p>
+<p>2、当前元素个数为奇数的时候，此时再读入一个元素（最终应该是大顶堆中多一个元素），元素个数是偶数，我们应该返回大顶堆中的堆顶元素和小顶堆中的堆顶元素的平均数。</p>
+<p><strong>如何保持性质</strong>：因为最终应该是大顶堆中多一个元素，所以先经过小顶堆，然后再到大顶堆。</p>
+<p>注意：Python 中的 heap 只有小顶堆，在构造大顶堆的时候，要绕一个弯子，把相反数 push 进去，pop 出来的时候也要取相反数。</p>
+<h2 id="_4">参考解答</h2>
 <h3 id="1">参考解答1</h3>
+<p>Python 代码：</p>
+<pre><code class="python">import heapq
+
+
+class Solution:
+
+    def __init__(self):
+        self.min_heap = []
+        self.max_heap = []
+        self.count = 0
+
+    def insert(self, num):
+        &quot;&quot;&quot;
+        :type num: int
+        :rtype: void
+        &quot;&quot;&quot;
+        self.count += 1
+        if self.count % 2 == 1:
+            heapq.heappush(self.max_heap, -num)
+            temp = -heapq.heappop(self.max_heap)
+            heapq.heappush(self.min_heap, temp)
+        else:
+            heapq.heappush(self.min_heap, num)
+            temp = heapq.heappop(self.min_heap)
+            heapq.heappush(self.max_heap, -temp)
+
+        # print(self.min_heap)
+        # print(self.max_heap)
+
+    def getMedian(self):
+        &quot;&quot;&quot;
+        :rtype: float
+        &quot;&quot;&quot;
+        if self.count % 2 == 1:
+            return self.min_heap[0]
+        else:
+            return (self.min_heap[0] + (-self.max_heap[0])) / 2
+
+
+if __name__ == '__main__':
+    solution = Solution()
+    solution.insert(1)
+    result = solution.getMedian()
+    print(result)
+    solution.insert(2)
+    result = solution.getMedian()
+    print(result)
+
+    solution.insert(3)
+    result = solution.getMedian()
+    print(result)
+
+    solution.insert(4)
+    result = solution.getMedian()
+    print(result)
+</code></pre>
+
+<p>说明：1、奇数偶数的判断可以使用位运算：<code>count &amp; 1 == 1</code> 可以判断 <code>count</code> 是不是奇数；</p>
+<p>2、上面的代码写得有一些烦琐，我们注意到，反正小顶堆中的元素一定 <code>&gt;=</code> 大顶堆中的元素，我们可以把顺序统一一下，如果当前是奇数的话，新来的一个数，先进入小顶堆，然后小顶堆中出一个数再进入大顶堆，这样小顶堆和大顶堆元素数目就一样了。那如果当前是偶数，最终效果是小顶堆多一个元素，还按照刚刚那个流程，我们从大顶堆再拿一个元素放回小顶堆就可以了。</p>
+<p>我们统一写在参考解答2里。</p>
+<h3 id="2">参考解答2：</h3>
+<p>Python 代码</p>
+<pre><code class="python">import heapq
+
+
+class Solution:
+
+    def __init__(self):
+        self.min_heap = []
+        self.max_heap = []
+        self.count = 0
+
+    def insert(self, num):
+        &quot;&quot;&quot;
+        :type num: int
+        :rtype: void
+        &quot;&quot;&quot;
+        # 当前是奇数的时候，直接&quot;最小堆&quot; -&gt; &quot;最大堆&quot;，就可以了
+        # 此时&quot;最小堆&quot; 与 &quot;最大堆&quot; 的元素数组是相等的
+
+        # 当前是偶数的时候，&quot;最小堆&quot; -&gt; &quot;最大堆&quot;以后，最终我们要让&quot;最小堆&quot;多一个元素
+        # 所以应该让 &quot;最大堆&quot; 拿出一个元素给 &quot;最小堆&quot;
+
+        heapq.heappush(self.min_heap, num)
+        temp = heapq.heappop(self.min_heap)
+        heapq.heappush(self.max_heap, -temp)
+        if self.count &amp; 1 == 0:
+            temp = -heapq.heappop(self.max_heap)
+            heapq.heappush(self.min_heap, temp)
+        self.count += 1
+        # print(self.min_heap)
+        # print(self.max_heap)
+
+    def getMedian(self):
+        &quot;&quot;&quot;
+        :rtype: float
+        &quot;&quot;&quot;
+        if self.count &amp; 1 == 1:
+            return self.min_heap[0]
+        else:
+            return (self.min_heap[0] + (-self.max_heap[0])) / 2
+</code></pre>
               
             </div>
           </div>
@@ -492,7 +607,7 @@
         <a href="../[剑指 Offer 第 2 版第 42 题] “连续子数组的最大和”做题记录/" class="btn btn-neutral float-right" title="[剑指 Offer 第 2 版第 42 题] “连续子数组的最大和”做题记录">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录/" class="btn btn-neutral" title="[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录/" class="btn btn-neutral" title="[剑指 Offer 第 2 版第 40 题] “最小的 K 个数”做题记录"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   

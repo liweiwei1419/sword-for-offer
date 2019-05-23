@@ -157,11 +157,6 @@
     <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
 	    </li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
             <li class="toctree-l1 current">
 		
     <a class="current" href="./">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
@@ -171,11 +166,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#29">第 29 题：顺时针打印矩阵</a></li>
         
         </ul>
     
@@ -471,16 +462,22 @@
             <div class="section">
               
                 <h1 id="offer-2-29">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/9b4c81a02cd34f76be2659fa0d54342a?tpId=13&amp;tqId=11172&amp;tPage=1&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
-<p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>这道题，书本上的解法我个人觉得还不够直观、简洁，要考虑到一些边界情况。</li>
-<li>借用之前做题中，使用状态以及状态转移的策略，不难画出图形如下。</li>
-</ul>
+<h3 id="29">第 29 题：顺时针打印矩阵</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/39/">顺时针打印矩阵</a>，<a href="https://www.nowcoder.com/practice/9b4c81a02cd34f76be2659fa0d54342a?tpId=13&amp;tqId=11172&amp;tPage=1&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。</p>
+<p>样例：</p>
+<p>输入：
+<code>[
+      [1, 2, 3, 4],
+      [5, 6, 7, 8],
+      [9,10,11,12]
+]</code></p>
+<p>输出：<code>[1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]</code></p>
+</blockquote>
+<p>分析：
++ 这道题，书本上的解法我个人觉得还不够直观、简洁，要考虑到一些边界情况。
++ 借用之前做题中，使用状态以及状态转移的策略，不难画出图形如下。</p>
 <p>下面是对这张图的解释，我们只解释了一个状态执行的代码，其它状态可以同样分析得出。</p>
 <ul>
 <li>在初始状态下，应该向右边走，因此状态为“RIGHT”（或许，这里定义成“方向”会更贴切一些）。</li>
@@ -488,8 +485,7 @@
 <li>遍历完成以后，其实点的坐标越界了，我们要把它挪到下一次状态的起点。</li>
 <li>如果遍历到中心的时候，很可能遇到只更改了状态，不执行循环体的情况，这就避免了对一些边界情况的考虑。</li>
 </ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<p>Java 代码：</p>
 <pre><code class="java">import java.util.ArrayList;
 
 // 29 顺时针打印矩阵
@@ -582,6 +578,70 @@ public class Solution {
     }
 }
 </code></pre>
+
+<p>Python 代码：</p>
+<pre><code class="python">class Solution:
+    # matrix类型为二维列表，需要返回列表
+    def printMatrix(self, matrix):
+        rows = len(matrix)
+        cols = len(matrix[0])
+        result = []
+        if rows == 0 and cols == 0:
+            return result
+        left, right, top, buttom = 0, cols - 1, 0, rows - 1
+        while left &lt;= right and top &lt;= buttom:
+            for i in range(left, right + 1):
+                result.append(matrix[top][i])
+            for i in range(top + 1, buttom + 1):
+                result.append(matrix[i][right])
+            if top != buttom:
+                for i in range(left, right)[::-1]:
+                    result.append(matrix[buttom][i])
+            if left != right:
+                for i in range(top + 1, buttom)[::-1]:
+                    result.append(matrix[i][left])
+            left += 1
+            top += 1
+            right -= 1
+            buttom -= 1
+        return result
+</code></pre>
+
+<p>“大雪菜”的写法：我们顺时针定义四个方向：上右下左。从左上角开始遍历，先往右走，走到不能走为止，然后更改到下个方向，再走到不能走为止，依次类推，遍历 $n^2$ 个格子后停止。</p>
+<p>时间复杂度：矩阵中每个格子遍历一次，所以总时间复杂度是 $O(n^2)$。</p>
+<p>C++ 代码：</p>
+<pre><code class="c++">class Solution {
+public:
+    vector&lt;int&gt; printMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
+        vector&lt;int&gt; res;
+        if (matrix.empty()) return res;
+        int n = matrix.size(), m = matrix[0].size();
+        vector&lt;vector&lt;bool&gt;&gt; st(n, vector&lt;bool&gt;(m, false));
+        int dx[4] = {-1, 0, 1, 0}, dy[4] = {0, 1, 0, -1};
+        int x = 0, y = 0, d = 1;
+        for (int k = 0; k &lt; n * m; k ++ )
+        {
+            res.push_back(matrix[x][y]);
+            st[x][y] = true;
+
+            int a = x + dx[d], b = y + dy[d];
+            if (a &lt; 0 || a &gt;= n || b &lt; 0 || b &gt;= m || st[a][b])
+            {
+                d = (d + 1) % 4;
+                a = x + dx[d], b = y + dy[d];
+            }
+            x = a, y = b;
+        }
+        return res;
+    }
+};
+
+</code></pre>
+
+<p>作者：yxc
+链接：https://www.acwing.com/solution/AcWing/content/748/
+来源：AcWing
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
               
             </div>
           </div>
@@ -592,7 +652,7 @@ public class Solution {
         <a href="../[剑指 Offer 第 2 版第 3 题] “数组中重复的数字”做题记录/" class="btn btn-neutral float-right" title="[剑指 Offer 第 2 版第 3 题] “数组中重复的数字”做题记录">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/" class="btn btn-neutral" title="[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录/" class="btn btn-neutral" title="[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -618,7 +678,7 @@ public class Solution {
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../[剑指 Offer 第 2 版第 3 题] “数组中重复的数字”做题记录/" style="color: #fcfcfc">Next &raquo;</a></span>

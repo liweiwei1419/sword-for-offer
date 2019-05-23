@@ -156,11 +156,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#27">第 27 题：操作给定的二叉树，将其变换为源二叉树的镜像</a></li>
         
         </ul>
     
@@ -171,11 +167,6 @@
             <li class="toctree-l1">
 		
     <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -471,30 +462,54 @@
             <div class="section">
               
                 <h1 id="offer-2-27">[剑指 Offer 第 2 版第 27 题] “二叉树的镜像”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/564f4c26aa584921bc75623e48ca3011?tpId=13&amp;tqId=11171&amp;tPage=1&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
-<p>操作给定的二叉树，将其变换为源二叉树的镜像。
-输入描述:
-二叉树的镜像定义：源二叉树 
-            8
-           /  \
-          6   10
-         / \  / \
-        5  7 9 11
-        镜像二叉树
-            8
-           /  \
-          10   6
-         / \  / \
-        11 9 7  5</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>这道题的解决实际上考察了二叉树的遍历，事实上，前序遍历、后序遍历、层序遍历都是可以完成题目要求的。</li>
-</ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<h3 id="27">第 27 题：操作给定的二叉树，将其变换为源二叉树的镜像</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/37/">二叉树的镜像</a>，<a href="https://www.nowcoder.com/practice/564f4c26aa584921bc75623e48ca3011?tpId=13&amp;tqId=11171&amp;tPage=1&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>输入一个二叉树，将它变换为它的镜像。</p>
+<p>样例：</p>
+<p>输入树：
+<code>8
+   / \
+  6  10
+ / \ / \
+5  7 9 11</code></p>
+<p><code>[8,6,10,5,7,9,11,null,null,null,null,null,null,null,null]</code>
+输出树：</p>
+<p><code>8
+   / \
+  10  6
+ / \ / \
+11 9 7  5</code>
+<code>[8,10,6,11,9,7,5,null,null,null,null,null,null,null,null]</code></p>
+</blockquote>
+<p>分析：这道题的解决实际上考察了二叉树的遍历，事实上，前序遍历、后序遍历、层序遍历都是可以完成题目要求的。</p>
+<p>思路1：递归方式：前序遍历或者后序遍历都行。</p>
+<p>Python 代码：前序遍历</p>
+<pre><code class="python"># Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+class Solution(object):
+    def mirror(self, root):
+        &quot;&quot;&quot;
+        :type root: TreeNode
+        :rtype: void
+        &quot;&quot;&quot;
+        # 先写递归终止条件
+        if root is None:
+            return root
+
+        # 按照前序遍历的方式
+        root.left, root.right = root.right, root.left
+        self.mirror(root.left)
+        self.mirror(root.right)
+</code></pre>
+
+<p>Java 代码：</p>
 <pre><code class="java">class TreeNode {
     int val = 0;
     TreeNode left = null;
@@ -531,6 +546,109 @@ public class Solution {
         root.right = temp;
     }
 }
+</code></pre>
+
+<p>Python 代码：后序遍历</p>
+<pre><code class="python"># Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+class Solution(object):
+    def mirror(self, root):
+        &quot;&quot;&quot;
+        :type root: TreeNode
+        :rtype: void
+        &quot;&quot;&quot;
+        # 先写递归终止条件
+        if root is None:
+            return root
+
+        # 按照后序遍历的方式
+        self.mirror(root.left)
+        self.mirror(root.right)
+        root.left, root.right = root.right, root.left
+</code></pre>
+
+<p>Python 代码：层序遍历</p>
+<pre><code class="python">class Solution(object):
+    def mirror(self, root):
+        &quot;&quot;&quot;
+        :type root: TreeNode
+        :rtype: void
+        &quot;&quot;&quot;
+        # 先写递归终止条件
+        if root is None:
+            return root
+        queue = [root]
+        while queue:
+            top = queue.pop(0)
+            top.left, top.right = top.right, top.left
+            if top.left:
+                queue.append(top.left)
+            if top.right:
+                queue.append(top.right)
+        return root
+</code></pre>
+
+<p>思路2：非递归方式（没有看出来是那种递归方式）。</p>
+<p>Java 代码：</p>
+<pre><code class="java">class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class Solution {
+
+    // 前序遍历和后序遍历都是可以的
+    public void Mirror(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        Mirror(root.left);
+        Mirror(root.right);
+    }
+
+    public void Mirror1(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Mirror(root.left);
+        Mirror(root.right);
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+    }
+}
+</code></pre>
+
+<p>非递归方式：下面这个代码有点意思。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class Solution:
+
+    def Mirror(self, root):
+        if root is None:
+            return
+        stack = []
+        while root or stack:
+            while root:
+                root.left, root.right = root.right, root.left
+                stack.append(root)
+                root = root.left
+            if stack:
+                root = stack.pop()
+                root = root.right
 </code></pre>
               
             </div>

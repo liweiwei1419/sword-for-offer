@@ -159,11 +159,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
 	    </li>
           
@@ -186,11 +181,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#31">第 31 题：栈的压入、弹出序列</a></li>
         
         </ul>
     
@@ -471,17 +462,50 @@
             <div class="section">
               
                 <h1 id="offer-2-31">[剑指 Offer 第 2 版第 31 题] “栈的压入、弹出序列”做题记录</h1>
-<ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&amp;tqId=11174&amp;tPage=2&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking</li>
-</ul>
-<h2 id="_1">题目描述</h2>
-<p>输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4，5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>这道题的求解要借助一些具体的例子，题目中给出的正例和反例，就足够帮助我们分析出代码的逻辑了。</li>
-</ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<h3 id="31">第 31 题：栈的压入、弹出序列</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/40/">栈的压入、弹出序列</a>，<a href="https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&amp;tqId=11174&amp;tPage=2&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。</p>
+<p>假设压入栈的所有数字均不相等。</p>
+<p>例如序列 $[1,2,3,4,5]$ 是某栈的压入顺序，序列 $[4,5,3,2,1]$ 是该压栈序列对应的一个弹出序列，但 $[4,3,5,1,2]$ 就不可能是该压栈序列的弹出序列。</p>
+<p><strong>注意</strong>：若两个序列为空或长度不等则视为并不是一个栈的压入、弹出序列。</p>
+<p>样例：</p>
+<p>输入：<code>[1,2,3,4,5]</code>，<code>[4,5,3,2,1]</code>
+输出：<code>true</code></p>
+</blockquote>
+<p>思路：下面展示了一个最简单的写法：两个栈都为空的情况要考虑到。</p>
+<p>Python 代码：引入一个数组的数据结构，这个数据结构恰好也是栈</p>
+<pre><code class="python">class Solution(object):
+    def isPopOrder(self, pushV, popV):
+        &quot;&quot;&quot;
+        :type pushV: list[int]
+        :type popV: list[int]
+        :rtype: bool
+        &quot;&quot;&quot;
+        if len(pushV) == 0 and len(popV) == 0:
+            return False
+        if pushV is None or popV is None or len(pushV) != len(popV):
+            return False
+        stack = []
+        index = 0
+        for ele in pushV:
+            stack.append(ele)
+            while stack and stack[-1] == popV[index]:
+                stack.pop()
+                index += 1
+        # 最后不要忘记判断 stack 为空的情况
+        return len(stack) == 0
+
+
+if __name__ == '__main__':
+    pushV = []
+    popV = []
+    solution = Solution()
+    result = solution.isPopOrder(pushV, popV)
+    print(result)
+</code></pre>
+
+<p>Java 代码：这道题的求解要借助一些具体的例子，题目中给出的正例和反例，就足够帮助我们分析出代码的逻辑了。</p>
 <pre><code class="java">import java.util.LinkedList;
 import java.util.Stack;
 
@@ -543,6 +567,8 @@ public class Solution {
     }
 }
 </code></pre>
+
+<p>同 LeetCode  第 946 题，传送门：<a href="https://leetcode-cn.com/problems/validate-stack-sequences/description/">946. 验证栈序列</a>。</p>
               
             </div>
           </div>

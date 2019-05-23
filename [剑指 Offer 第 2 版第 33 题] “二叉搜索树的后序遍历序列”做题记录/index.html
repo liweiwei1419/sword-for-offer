@@ -159,11 +159,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
 	    </li>
           
@@ -202,19 +197,7 @@
     <a class="current" href="./">[剑指 Offer 第 2 版第 33 题] “二叉搜索树的后序遍历序列”做题记录</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#_1">题目描述</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_2">求解思路与关键</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_3">参考解答</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#1">参考解答1</a></li>
-        
-        </ul>
+    <li class="toctree-l2"><a href="#33">第 33 题：二叉搜索树的后序遍历序列（递归、分治）</a></li>
     
 
     </ul>
@@ -473,20 +456,104 @@
             <div class="section">
               
                 <p>[剑指 Offer 第 2 版第 33 题] “二叉搜索树的后序遍历序列”做题记录</p>
+<h3 id="33">第 33 题：二叉搜索树的后序遍历序列（递归、分治）</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/44/">二叉搜索树的后序遍历序列</a>，<a href="https://www.nowcoder.com/practice/a861533d45854474ac791d90e447bafd?tpId=13&amp;tqId=11176&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。</p>
+<p>如果是则返回 true，否则返回 false。</p>
+<p>假设输入的数组的任意两个数字都互不相同。</p>
+<p>样例：</p>
+<p>输入：<code>[4, 8, 6, 12, 16, 14, 10]</code></p>
+<p>输出：<code>true</code></p>
+</blockquote>
+<p>分析：前提：数组中的数字各不相同。注意到题目中已经注明了：<strong>假设输入的数组的任意两个数字都互不相同</strong>。</p>
 <ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/a861533d45854474ac791d90e447bafd?tpId=13&amp;tqId=11176&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking</li>
+<li>根结点是后序遍历的最后一个元素，因此一定位于给定数组的最后一位；</li>
+<li>那么给定数组的最后一位就可以把这个数组分为两个部分，前半部分<strong>严格小于</strong>最后一个数，后半部分<strong>严格大于</strong>最后一个数；</li>
 </ul>
-<h2 id="_1">题目描述</h2>
-<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。
-输入两个链表，找出它们的第一个公共结点。</p>
-<h2 id="_2">求解思路与关键</h2>
+<p>根据以上两条就很容易写出递归的代码。</p>
+<p>依据：后序遍历最后遍历到的一定是根结点。</p>
+<p>注意：边界条件。</p>
+<p>思想：分治。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class Solution:
+    def verifySquenceOfBST(self, sequence):
+        &quot;&quot;&quot;
+        :type sequence: List[int]
+        :rtype: bool
+        &quot;&quot;&quot;
+        # 先写特殊情况
+        l = len(sequence)
+        if l == 0:
+            return False
+        if l == 1:
+            return True
+
+        return self.__helper(sequence, 0, l - 1)
+
+    def __helper(self, sequence, left, right):
+        # 先写递归终止条件
+        if left &gt;= right:
+            return True
+        # 此时区间最右边的数作为标定元素
+        pivot = sequence[right]
+        # 设置一个遍历指针，把 [left, right -1] 这个区间里的元素全部看一遍
+
+        # 正确的情况是：最右边的元素把前面的数组分成两部分：
+        # 第 1 部分的元素全部严格小于最右边的元素
+        # 第 2 部分的元素全部严格大于最右边的元素
+        point = left
+        while sequence[point] &lt; pivot:
+            point += 1
+        # 此时 [left, point - 1] 中的元素都严格比最右边的元素小
+        # 下面就依次验证后面的元素是不是都严格比最右边的元素大就好了
+        mid = point - 1
+        # 此后，所有的数都应该比 pivot 大
+        while point &lt; right:
+            if sequence[point] &gt; pivot:
+                point += 1
+            else:
+                return False
+        return self.__helper(sequence, left, mid) and self.__helper(sequence, mid + 1, right - 1)
+</code></pre>
+
+<p>Python 代码：分治法</p>
+<pre><code class="python">class Solution:
+    def verifySquenceOfBST(self, sequence):
+        &quot;&quot;&quot;
+        :type sequence: List[int]
+        :rtype: bool
+        &quot;&quot;&quot;
+        if not sequence: return False
+
+        root = sequence[-1]
+        for i in range(len(sequence)):
+            if sequence[i] &gt; root:
+                break
+
+        for j in range(i,len(sequence)):
+            if sequence[j] &lt; root:
+                return False
+
+        left = True
+        if i &gt; 0:
+            left = self.verifySquenceOfBST(sequence[:i])
+
+        right = True
+        if i &lt; len(sequence)-1:
+            right = self.verifySquenceOfBST(sequence[i:-1])
+
+        if left and right: return True
+        return False
+</code></pre>
+
+<p>Java 代码：</p>
 <ul>
 <li>根结点是后序遍历的最后一个元素，因此一定位于给定数组的最后一位。</li>
 <li>那么给定数组的最后一位就可以把这个数组分为两个部分，前半部分小于最后一个数，后半部分大于最后一个数。</li>
 <li>根据以上两条就很容易写出递归的代码。</li>
 </ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
+<p>Java 代码：</p>
 <pre><code class="java">public class Solution {
     public boolean VerifySquenceOfBST(int[] sequence) {
         int len = sequence.length;

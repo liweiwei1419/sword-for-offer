@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录 - My Docs</title>
+  <title>[剑指 Offer 第 2 版第 40 题] “最小的 K 个数”做题记录 - My Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "[\u5251\u6307 Offer \u7b2c 2 \u7248\u7b2c 40 \u9898] \u201c\u6700\u5c0f\u7684K\u4e2a\u6570\u201d\u505a\u9898\u8bb0\u5f55";
+    var mkdocs_page_name = "[\u5251\u6307 Offer \u7b2c 2 \u7248\u7b2c 40 \u9898] \u201c\u6700\u5c0f\u7684 K \u4e2a\u6570\u201d\u505a\u9898\u8bb0\u5f55";
     var mkdocs_page_input_path = "[\u5251\u6307 Offer \u7b2c 2 \u7248\u7b2c 40 \u9898] \u201c\u6700\u5c0f\u7684K\u4e2a\u6570\u201d\u505a\u9898\u8bb0\u5f55.md";
     var mkdocs_page_url = "/[\u5251\u6307 Offer \u7b2c 2 \u7248\u7b2c 40 \u9898] \u201c\u6700\u5c0f\u7684K\u4e2a\u6570\u201d\u505a\u9898\u8bb0\u5f55/";
   </script>
@@ -159,11 +159,6 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录副本/">[剑指 Offer 第 2 版第 28 题] “对称的二叉树”做题记录</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <a class="" href="../[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录/">[剑指 Offer 第 2 版第 29 题] “顺时针打印矩阵”做题记录</a>
 	    </li>
           
@@ -239,18 +234,14 @@
           
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录</a>
+    <a class="current" href="./">[剑指 Offer 第 2 版第 40 题] “最小的 K 个数”做题记录</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#offer-2-40-k">[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录</a></li>
+    <li class="toctree-l2"><a href="#offer-2-40-k">[剑指 Offer 第 2 版第 40 题] “最小的 K 个数”做题记录</a></li>
     
         <ul>
         
-            <li><a class="toctree-l3" href="#_1">题目描述</a></li>
-        
-            <li><a class="toctree-l3" href="#_2">求解思路与关键</a></li>
-        
-            <li><a class="toctree-l3" href="#_3">参考解答</a></li>
+            <li><a class="toctree-l3" href="#40-k">第 40 题：最小的 K 个数</a></li>
         
         </ul>
     
@@ -460,7 +451,7 @@
     
       
     
-    <li>[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录</li>
+    <li>[剑指 Offer 第 2 版第 40 题] “最小的 K 个数”做题记录</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -470,79 +461,185 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="offer-2-40-k">[剑指 Offer 第 2 版第 40 题] “最小的K个数”做题记录</h1>
+                <h1 id="offer-2-40-k">[剑指 Offer 第 2 版第 40 题] “最小的 K 个数”做题记录</h1>
+<h3 id="40-k">第 40 题：最小的 K 个数</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/49/">最小的k个数</a>，<a href="https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&amp;tqId=11183&amp;tPage=2&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>输入 $n$ 个整数，找出其中最小的 $k$ 个数。</p>
+<p><strong>注意：</strong></p>
 <ul>
-<li>牛客网 online judge 地址：https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&amp;tqId=11183&amp;tPage=2&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking</li>
+<li>数据保证 k 一定小于等于输入数组的长度;</li>
+<li>输出数组内元素请按从小到大顺序排序;</li>
 </ul>
-<h2 id="_1">题目描述</h2>
-<p>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</p>
-<h2 id="_2">求解思路与关键</h2>
-<ul>
-<li>只要熟悉了快速排序的 partition 过程，这道问题的解决就十分容易了。</li>
-</ul>
-<h2 id="_3">参考解答</h2>
-<h3 id="1">参考解答1</h3>
-<pre><code class="java">import java.util.ArrayList;
-
-public class Solution {
-    public ArrayList&lt;Integer&gt; GetLeastNumbers_Solution(int[] input, int k) {
-        ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;();
-        int len = input.length;
-        if (len == 0 || k &lt; 0 || k &gt; len) {
-            return res;
-        }
-        int l = 0;
-        int r = len - 1;
-        // 考虑边界条件
-        while (l &lt;= r) {
-            int partition = partition(input, l, r);
-            if (partition &lt; k - 1) {
-                l = partition + 1;
-            } else if (partition &gt; k - 1) {
-                r = partition - 1;
-            } else {
-                assert partition == k - 1;
-                for (int i = 0; i &lt; k; i++) {
-                    res.add(input[i]);
-                }
-                break;
-            }
-        }
-        return res;
-    }
-
-    private int partition(int[] nums, int l, int r) {
-        // 可以随机选取
-        int pivot = nums[l];
-        int lt = l;
-        for (int i = l + 1; i &lt;= r; i++) {
-            if (nums[i] &lt; pivot) {
-                lt++;
-                swap(nums, lt, i);
-            }
-        }
-        swap(nums, lt, l);
-        return lt;
-    }
-
-    private void swap(int[] nums, int index1, int index2) {
-        if (index1 == index2) {
-            return;
-        }
-        int temp = nums[index1];
-        nums[index1] = nums[index2];
-        nums[index2] = temp;
-    }
-
-    public static void main(String[] args) {
-        int[] nums = new int[]{4, 5, 1, 6, 2, 7, 3, 8};
-        int k = 8;
-        Solution solution = new Solution();
-        ArrayList&lt;Integer&gt; getLeastNumbers_solution = solution.GetLeastNumbers_Solution(nums, k);
-        System.out.println(getLeastNumbers_solution);
-    }
-}
+<p>样例：</p>
+<p>输入：<code>[1,2,3,4,5,6,7,8]</code>, <code>k=4</code></p>
+<p>输出：<code>[1,2,3,4]</code></p>
+</blockquote>
+<p>分析：最简单的思路就是排个序，然后取出前 $k$ 个元素，不过时间复杂度是 $O(n\log n)$，$n$ 为数组的长度。 </p>
+<p>Python 代码：</p>
+<pre><code class="python">class Solution(object):
+    def getLeastNumbers_Solution(self, input, k):
+        size = len(input)
+        if size == 0:
+            return []
+        if k == size:
+            return sorted(input)
+        return sorted(input)[:k]
 </code></pre>
+
+<p>其实可以用  $O(n\log k)$ 的时间复杂度找到最小的 $k$ 个元素。有两种思路：</p>
+<p>1、借助快速排序把数组一分为二的 partition 操作；</p>
+<p>2、借助最大堆（需要把数组做一个转换，都变成相反数，最小的 $k$ 个数，就是最大堆里最大的 $k$ 个数）。</p>
+<p>Python 代码1：partition，注意，这种方式，大于等于 pivot 的元素都被分在了右边</p>
+<pre><code class="python">class Solution(object):
+    def getLeastNumbers_Solution(self, input, k):
+        &quot;&quot;&quot;
+        :type input: list[int]
+        :type k: int
+        :rtype: list[int]
+        &quot;&quot;&quot;
+        size = len(input)
+
+        if size == 0:
+            return []
+        if k == size:
+            return sorted(input)
+        l = 0
+        r = size - 1
+        while l &lt;= r:
+            p = self.__partition(input, l, r)
+            if p == k - 1:
+                return sorted(input[:p + 1])
+            elif p &gt; k - 1:
+                # 此时  k-1  p
+                r = p - 1
+            else:
+                # 此时 p k-1
+                l = p + 1
+
+    def __partition(self, input, left, right):
+        # 只有一个数的时候，就没有必要 partition 了
+        # 直接返回这个数的索引
+        if left == right:
+            return left
+        pivot = input[left]
+
+        j = left
+        # [left + 1, j] 这个区间里的元素都严格小于 pivot
+        for i in range(left + 1, right + 1):
+            if input[i] &lt; pivot:
+                j += 1
+                input[i], input[j] = input[j], input[i]
+        input[left], input[j] = input[j], input[left]
+        return j
+
+
+if __name__ == '__main__':
+    input = [9, 14, 1, 16, 19, 13, 12]
+    k = 4
+    solution = Solution()
+    result = solution.getLeastNumbers_Solution(input, k)
+    print(result)
+</code></pre>
+
+<p>Python 代码2：最大堆</p>
+<pre><code class="python">class Solution(object):
+
+    def getLeastNumbers_Solution(self, input, k):
+        &quot;&quot;&quot;
+        :type input: list[int]
+        :type k: int
+        :rtype: list[int]
+        &quot;&quot;&quot;
+        size = len(input)
+        if size == 0:
+            return []
+        if k == size:
+            return sorted(input)
+        import heapq
+
+        l = []
+        for num in input[:k]:
+            heapq.heappush(l, -num)
+        for num in input[k:]:
+            top = l[0]
+            if top &lt; -num:
+                heapq.heappushpop(l, -num)
+        return sorted([-num for num in l])
+</code></pre>
+
+<p>当然，Python 中的 <code>heapq</code> 直接就有获取最小 $k$ 个元素的方法。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class Solution(object):
+
+    def getLeastNumbers_Solution(self, input, k):
+        &quot;&quot;&quot;
+        :type input: list[int]
+        :type k: int
+        :rtype: list[int]
+        &quot;&quot;&quot;
+        size = len(input)
+        if size == 0:
+            return []
+        if k == size:
+            return sorted(input)
+        import heapq
+        heapq.heapify(input)
+        return sorted(heapq.nsmallest(k, input))
+</code></pre>
+
+<p>Python 代码：两路 partition 的写法：</p>
+<pre><code class="python">class Solution(object):
+    def getLeastNumbers_Solution(self, input, k):
+        &quot;&quot;&quot;
+        :type input: list[int]
+        :type k: int
+        :rtype: list[int]
+        &quot;&quot;&quot;
+
+        size = len(input)
+
+        if size == 0:
+            return []
+        if k == size:
+            return sorted(input)
+        l = 0
+        r = size - 1
+        while l &lt;= r:
+            p = self.__partition(input, l, r)
+            if p == k - 1:
+                return sorted(input[:p + 1])
+            elif p &gt; k - 1:
+                # 此时  k-1  p
+                r = p - 1
+            else:
+                # 此时 p k-1
+                l = p + 1
+
+    def __partition(self, input, left, right):
+        # 只有一个数的时候，就没有必要 partition 了
+        # 直接返回这个数的索引
+        if left == right:
+            return left
+        pivot = input[left]
+        l = left + 1
+        r = right
+        while True:
+            while l &lt;= right and input[l] &lt;= pivot:
+                l += 1
+            while r &gt; left and input[r] &gt;= pivot:
+                r -= 1
+            if l &gt; r:
+                break
+            input[l], input[r] = input[r], input[l]
+            l += 1
+            r -= 1
+        input[left], input[r] = input[r], input[left]
+        return r
+</code></pre>
+
+<p>C++ 代码：</p>
+<p><img alt="《剑指 Offer （第 2 版）》第 40 题：最小的 K 个数" src="http://upload-images.jianshu.io/upload_images/414598-21d5a413f726511c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
               
             </div>
           </div>
