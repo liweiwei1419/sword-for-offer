@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>04-二维数组中的查找 - 《剑指 Offer》（第 2 版）</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "04-\u4e8c\u7ef4\u6570\u7ec4\u4e2d\u7684\u67e5\u627e";
+    var mkdocs_page_input_path = "04-\u4e8c\u7ef4\u6570\u7ec4\u4e2d\u7684\u67e5\u627e.md";
+    var mkdocs_page_url = "/04-\u4e8c\u7ef4\u6570\u7ec4\u4e2d\u7684\u67e5\u627e/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../03-数组中重复的数字/" class="icon icon-home"> 《剑指 Offer》（第 2 版）</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03-数组中重复的数字/">03-数组中重复的数字</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">04-二维数组中的查找</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#offer-2-4">[剑指 Offer 第 2 版第 4 题] “二维数组中的查找”做题记录</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#4">第 4 题：二维数组中的查找</a></li>
+        
+            <li><a class="toctree-l3" href="#leetcode-74">LeetCode 第 74 题：搜索二维矩阵</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06-从尾到头打印链表/">06-从尾到头打印链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05-替换空格/">05-替换空格</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07-重建二叉树/">07-重建二叉树</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08-二叉树的下一个结点/">08-二叉树的下一个结点</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09-1-用两个栈实现队列/">09-1-用两个栈实现队列</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09-2-用队列实现栈/">09-2-用队列实现栈</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../03-数组中重复的数字/">《剑指 Offer》（第 2 版）</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../03-数组中重复的数字/">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>04-二维数组中的查找</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="offer-2-4">[剑指 Offer 第 2 版第 4 题] “二维数组中的查找”做题记录</h1>
+<h3 id="4">第 4 题：二维数组中的查找</h3>
+<p>同 LeetCode 第 240 题，LeetCode 传送门：<a href="https://leetcode-cn.com/problems/search-a-2d-matrix-ii">搜索二维矩阵 II</a>，AcWing：<a href="https://www.acwing.com/problem/content/16/">二维数组中的查找</a>，牛客网传送门：<a href="https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&amp;tqId=11154&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">二维数组中的查找</a>。</p>
+<blockquote>
+<p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。</p>
+<p>请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>样例：</p>
+<p>输入数组：</p>
+<p><code>[
+     [1,2,8,9]，
+     [2,4,9,12]，
+     [4,7,10,13]，
+     [6,8,11,15]
+]</code></p>
+<p>如果输入查找数值为 7，则返回 true，</p>
+<p>如果输入查找数值为 5 ，则返回 false。</p>
+</blockquote>
+<p>分析：有点像 LeetCode 上岛屿的问题，特别之处：从右上角开始找，或者从左下角开始找，<strong>为什么不能选左上或者右下开始，因为不能缩小查找范围</strong>。首先选取数组中右上角的数字。如果该数字等于要查找的数字，查找过程结束；如果该数字大于要查找的数组，剔除这个数字所在的列；如果该数字小于要查找的数字，剔除这个数字所在的行。也就是说如果要查找的数字不在数组的右上角，则每一次都在数组的查找范围中剔除一行或者一列，这样每一步都可以缩小查找的范围，直到找到要查找的数字，或者查找范围为空。
+<img alt="《剑指 Offer （第 2 版）》第 4 题：二维数组中的查找-1" src="https://liweiwei1419.github.io/images/sword-for-offer/4-1.jpg" /></p>
+<p>Python 代码：从右上角开始找，一个一个地找。<strong>小了向下面走，大了向左边走</strong></p>
+<pre><code class="python">class Solution(object):
+
+    def searchArray(self, array, target):
+        rows = len(array)
+        if rows == 0:
+            return False
+
+        cols = len(array[0])
+        if rows &gt; 0 and cols &gt; 0:
+            row = 0
+            col = cols - 1
+            # 注意：在横纵坐标都有意义的时候，才可以搜索，因此用 and
+            while row &lt; rows and col &gt;= 0:
+                if target == array[row][col]:
+                    return True
+                elif target &lt; array[row][col]:
+                    # [4, 5, 6, 12, 13] 找 7
+                    col -= 1
+                else:
+                    # [7]
+                    # [8]
+                    # [12] 找 9
+                    row += 1
+        # 全部走完都找不到，就说明没有
+        return False
+</code></pre>
+
+<p>说明：其实不管是每行还是每列，都是有序数组，所以可以使用二分法。我写了个二分法，只是作为练习。但是二分法不能保证一次写对，所以不建议在面试的时候写。</p>
+<ul>
+<li>正确的搜索起点是从左下角或者右上角开始搜索，这是因为：
+从下到上，数字越来越小；<br />
+从左到右，数字越来越大。</li>
+<li>注意指针没有必要回退，这一点，在下面的代码注释中做了强调。</li>
+</ul>
+<p>Java 代码：</p>
+<pre><code class="java">public class Solution {
+
+    public boolean Find(int target, int[][] array) {
+        int row = array.length;
+        if (row == 0) {
+            return false;
+        }
+        int col = array[0].length;
+        // 从左下角开始搜索，先从左到右，再从下到上
+        int i = row - 1;
+
+        int j = 0;
+        while (i &gt;= 0) {
+            while (j &lt; col &amp;&amp; array[i][j] &lt; target) {
+                j++;
+            }
+            if (j &lt; col &amp;&amp; array[i][j] == target) {
+                return true;
+            }
+            i--;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = new int[][]{
+                {1, 2, 8, 9},
+                {2, 4, 9, 12},
+                {4, 7, 10, 13},
+                {6, 8, 11, 15}
+        };
+        Solution solution = new Solution();
+        boolean find = solution.Find(16, matrix);
+        System.out.println(find);
+    }
+}
+</code></pre>
+
+<p>Python 代码：（了解即可）</p>
+<pre><code class="python"># 4、二维数组中的查找
+
+class Solution(object):
+
+    # 二分法查找规律
+    # 1、从右到左，找第 1 个小于或者等于 target 的数
+    # 2、从上到下，找第 1 个大于或者等于 target 的数
+
+    def searchArray(self, array, target):
+        &quot;&quot;&quot;
+        :type array: List[List[int]]
+        :type target: int
+        :rtype: bool
+        &quot;&quot;&quot;
+
+        rows = len(array)
+        if rows == 0:
+            return False
+        cols = len(array[0])
+
+        col = cols - 1
+        row = 0
+
+        while row &lt; rows and col &gt;= 0:
+
+            # print('row', row, 'col', col, array[row][0])
+            # 1、从右到左，找第 1 个小于或者等于 target 的数
+            if col == 0 and array[row][0] &gt; target:
+                return False
+            l = 0
+            r = col
+            while l &lt; r:
+                mid = l + (r - l + 1) // 2
+                if array[row][mid] &lt;= target:
+                    l = mid
+                else:
+                    assert array[row][mid] &gt; target
+                    r = mid - 1
+            col = l
+
+            # 2、从上到下，找第 1 个大于或者等于 target 的数
+            if row == rows - 1 and array[rows - 1][col] &lt; target:
+                return False
+
+            l = row
+            r = rows - 1
+            while l &lt; r:
+                mid = l + (r - l) // 2
+                if array[mid][col] &gt;= target:
+                    r = mid
+                else:
+                    assert array[mid][col] &lt; target
+                    l = mid + 1
+            row = l
+
+            if array[row][col] == target:
+                return True
+
+        return False
+
+
+if __name__ == '__main__':
+    array = [[1, 2, 8, 9],
+             [2, 4, 9, 12],
+             [4, 7, 10, 13],
+             [6, 8, 11, 15]]
+    target = 16
+    solution = Solution()
+    result = solution.searchArray(array, target)
+    print(result)
+</code></pre>
+
+<h3 id="leetcode-74">LeetCode 第 74 题：搜索二维矩阵</h3>
+<p>传送门：<a href="https://leetcode-cn.com/problems/search-a-2d-matrix">搜索二维矩阵</a>。</p>
+<blockquote>
+<p>编写一个高效的算法来判断 <em>m</em> x <em>n</em> 矩阵中，是否存在一个目标值。该矩阵具有如下特性：</p>
+<ul>
+<li>每行中的整数从左到右按升序排列。</li>
+<li>每行的第一个整数大于前一行的最后一个整数。</li>
+</ul>
+<p><strong>示例 1:</strong></p>
+<p><code>输入:
+matrix = [
+[1,   3,  5,  7],
+[10, 11, 16, 20],
+[23, 30, 34, 50]
+]
+target = 3
+输出: true</code></p>
+<p><strong>示例 2:</strong></p>
+<p><code>输入:
+matrix = [
+[1,   3,  5,  7],
+[10, 11, 16, 20],
+[23, 30, 34, 50]
+]
+target = 13
+输出: false</code></p>
+</blockquote>
+<p>Python 代码1：“标准的”二分法</p>
+<pre><code class="python">class Solution(object):
+    def searchMatrix(self, matrix, target):
+        &quot;&quot;&quot;
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        &quot;&quot;&quot;
+        m = len(matrix)
+        if m == 0:
+            return False
+        n = len(matrix[0])
+        if n == 0:
+            return False
+        left = 0
+        # 这里一定要记得减 1
+        right = m * n - 1
+        while left &lt;= right:
+            mid = left + (right - left) // 2
+            # 定位到矩阵中
+            num = matrix[mid // n][mid % n]
+            if num == target:
+                return True
+            elif num &lt; target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return False
+</code></pre>
+
+<p>Python 代码2：“神奇的”二分法模板</p>
+<pre><code class="python">class Solution(object):
+    def searchMatrix(self, matrix, target):
+        &quot;&quot;&quot;
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        &quot;&quot;&quot;
+        m = len(matrix)
+        if m == 0:
+            return False
+        n = len(matrix[0])
+        # [[]] 针对这种情况，要特判
+        if n == 0:
+            return False
+
+        l = 0
+        r = m * n - 1
+
+        while l &lt; r:
+            mid = l + (r - l) // 2
+            if matrix[mid // n][mid % n] &lt; target:
+                l = mid + 1
+            else:
+                r = mid
+        # 这个模板在退出循环的时候 l == r 成立，但是有可能存在不满足条件的时候
+        # 所以要单独判断
+        return matrix[l // n][l % n] == target
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../06-从尾到头打印链表/" class="btn btn-neutral float-right" title="06-从尾到头打印链表">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../03-数组中重复的数字/" class="btn btn-neutral" title="03-数组中重复的数字"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../03-数组中重复的数字/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../06-从尾到头打印链表/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

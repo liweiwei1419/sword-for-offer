@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>08-二叉树的下一个结点 - 《剑指 Offer》（第 2 版）</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "08-\u4e8c\u53c9\u6811\u7684\u4e0b\u4e00\u4e2a\u7ed3\u70b9";
+    var mkdocs_page_input_path = "08-\u4e8c\u53c9\u6811\u7684\u4e0b\u4e00\u4e2a\u7ed3\u70b9.md";
+    var mkdocs_page_url = "/08-\u4e8c\u53c9\u6811\u7684\u4e0b\u4e00\u4e2a\u7ed3\u70b9/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../03-数组中重复的数字/" class="icon icon-home"> 《剑指 Offer》（第 2 版）</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03-数组中重复的数字/">03-数组中重复的数字</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04-二维数组中的查找/">04-二维数组中的查找</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06-从尾到头打印链表/">06-从尾到头打印链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05-替换空格/">05-替换空格</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07-重建二叉树/">07-重建二叉树</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">08-二叉树的下一个结点</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#offer-2-8">[剑指 Offer 第 2 版第 8 题] “二叉树的下一个结点”做题记录</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#8">第 8 题：二叉树的下一个结点</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09-1-用两个栈实现队列/">09-1-用两个栈实现队列</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09-2-用队列实现栈/">09-2-用队列实现栈</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../03-数组中重复的数字/">《剑指 Offer》（第 2 版）</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../03-数组中重复的数字/">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>08-二叉树的下一个结点</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="offer-2-8">[剑指 Offer 第 2 版第 8 题] “二叉树的下一个结点”做题记录</h1>
+<h3 id="8">第 8 题：二叉树的下一个结点</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/31/">AcWing：二叉树的下一个结点</a>，<a href="https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e?tpId=13&amp;tqId=11210&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>给定一棵二叉树的其中一个节点，请找出中序遍历序列的下一个节点。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>如果给定的节点是中序遍历序列的最后一个，则返回空节点;</li>
+<li>二叉树一定不为空，且给定的节点一定不是空节点；</li>
+</ul>
+<p>样例：</p>
+<p>假定二叉树是：<code>[2, 1, 3, null, null, null, null]</code>， 给出的是值等于 2 的节点。</p>
+<p>则应返回值等于3的节点。</p>
+<p>解释：该二叉树的结构如下，2 的后继节点是 3 。
+<code>2
+   / \
+1   3</code></p>
+</blockquote>
+<p>思路：用《算导》中提出的方法，画图分析，把要分类讨论的情况分析清楚，编码就很容易了。这道题的关键在于：<strong>看是否有右子树</strong>。</p>
+<p><img alt="《剑指 Offer （第 2 版）》第 8 题：重建二叉树-1" src="http://upload-images.jianshu.io/upload_images/414598-228e5097a2c79dc5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>画个清楚的图帮助理解：</p>
+<p><img alt="《剑指 Offer （第 2 版）》第 8 题：重建二叉树-2" src="http://upload-images.jianshu.io/upload_images/414598-4d1a0bbc50ec328f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>Python 代码：</p>
+<pre><code class="python">class Solution(object):
+    def inorderSuccessor(self, q):
+        &quot;&quot;&quot;
+        :type q: TreeNode
+        :rtype: TreeNode
+        &quot;&quot;&quot;
+
+        if q is None:
+            return None
+
+        # 分类讨论1：如果这个结点有右子树，返回这个右子树的最小者
+        if q.right:
+            node = q.right
+            while node.left:
+                node = node.left
+            return node
+        # 分类讨论2：如果这个结点没有右子树，向上追溯，追到父亲结点的左结点是自己
+        while q.father:
+            if q.father.left == q:
+                return q.father
+            q = q.father
+        return None
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../09-1-用两个栈实现队列/" class="btn btn-neutral float-right" title="09-1-用两个栈实现队列">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../07-重建二叉树/" class="btn btn-neutral" title="07-重建二叉树"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../07-重建二叉树/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../09-1-用两个栈实现队列/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>07-重建二叉树 - 《剑指 Offer》（第 2 版）</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "07-\u91cd\u5efa\u4e8c\u53c9\u6811";
+    var mkdocs_page_input_path = "07-\u91cd\u5efa\u4e8c\u53c9\u6811.md";
+    var mkdocs_page_url = "/07-\u91cd\u5efa\u4e8c\u53c9\u6811/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../03-数组中重复的数字/" class="icon icon-home"> 《剑指 Offer》（第 2 版）</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03-数组中重复的数字/">03-数组中重复的数字</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04-二维数组中的查找/">04-二维数组中的查找</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06-从尾到头打印链表/">06-从尾到头打印链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05-替换空格/">05-替换空格</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">07-重建二叉树</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#offer-2-7">[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#7">第 7 题：重建二叉树（递归）</a></li>
+        
+            <li><a class="toctree-l3" href="#leetcode-106">LeetCode 第 106 题：从中序与后序遍历序列构造二叉树</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08-二叉树的下一个结点/">08-二叉树的下一个结点</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09-1-用两个栈实现队列/">09-1-用两个栈实现队列</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09-2-用队列实现栈/">09-2-用队列实现栈</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../03-数组中重复的数字/">《剑指 Offer》（第 2 版）</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../03-数组中重复的数字/">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>07-重建二叉树</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="offer-2-7">[剑指 Offer 第 2 版第 7 题] “重建二叉树”做题记录</h1>
+<h3 id="7">第 7 题：重建二叉树（递归）</h3>
+<p>同 LeetCode 第 105 题，传送门：<a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">从前序与中序遍历序列构造二叉树</a>。</p>
+<p>传送门：<a href="https://www.acwing.com/problem/content/23/">AcWing：重建二叉树</a>，<a href="https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&amp;tqId=11157&amp;tPage=1&amp;rp=2&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>输入一棵二叉树前序遍历和中序遍历的结果，请重建该二叉树。</p>
+<p><strong>注意</strong>:</p>
+<ul>
+<li>二叉树中每个节点的值都互不相同；</li>
+<li>输入的前序遍历和中序遍历一定合法；</li>
+</ul>
+<p>样例：</p>
+<p>给定：
+前序遍历是：<code>[3, 9, 20, 15, 7]</code>
+中序遍历是：<code>[9, 3, 15, 20, 7]</code></p>
+<p>返回：<code>[3, 9, 20, null, null, 15, 7, null, null, null, null]</code>
+返回的二叉树如下所示：</p>
+<p><code>3
+    / \
+  9  20
+      / \
+    15  7</code></p>
+</blockquote>
+<p>分析：</p>
+<ul>
+<li>画图是解决这一类问题的关键，千万不要犯懒，拿出纸和笔，动手操作一下，往往思路就很清晰了；</li>
+<li>用类似二叉树插入节点的方式建立二叉树，即使用递归函数，返回新创建二叉树根节点的方式，将新的二叉树的根结点挂接到原来的二叉树的左右结点中；</li>
+<li>前序遍历的第 1 个元素就是二叉树的根结点。根据这一点，不难写出递归函数的代码。注意这是以“输入的前序遍历和中序遍历的结果中都不含重复的数字”为前提的。</li>
+</ul>
+<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-3" src="http://upload-images.jianshu.io/upload_images/414598-5f1d0a85e8d27400.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-4" src="http://upload-images.jianshu.io/upload_images/414598-70ed05bd120aa483.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>思路：递归重建。二叉树的 DFS 有如下三种遍历方式：</p>
+<ul>
+<li>前序遍历：先访问根结点，再访问左子结点，最后访问右子结点。</li>
+<li>中序遍历：先访问左子结点，再访问根结点，最后访问右子结点。</li>
+<li>后序遍历：先访问左子结点，再访问右子结点，最后访问根结点。</li>
+</ul>
+<p>本题为前序遍历和中序遍历，最少需要两种遍历方式，才能重建二叉树。</p>
+<p>关键：前序遍历数组的第 $1$ 个数（索引为 $0$）的数一定是二叉树的根结点，于是可以在中序遍历中找这个根结点的索引，然后把“前序遍历数组”和“中序遍历数组”分为两个部分，就分别对应二叉树的左子树和右子树，分别递归完成就可以了。</p>
+<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-1" src="http://upload-images.jianshu.io/upload_images/414598-d44d86f9bae88c1a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-4" src="http://upload-images.jianshu.io/upload_images/414598-9ecb0228c8a04c61.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p>注意：1、编写递归方法的时候，先写特殊情况；</p>
+<p>2、索引是多少不好判断的时候，干脆就用一个具体的例子，就比如我上面画的这个图，把具体的数换成我们使用的变量，这样思考的难度会降低，而且还不容易出错。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        &quot;&quot;&quot;
+        返回构造的 TreeNode 根结点
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        &quot;&quot;&quot;
+        # 在编码过程中，一定要保证 len(pre) == len(tin)，否则逻辑一定不正确
+        if len(preorder) == 0:
+            return None
+        if len(preorder) == 1:
+            # 这里要返回结点，而不是返回具体的数
+            return TreeNode(preorder[0])
+        root = TreeNode(preorder[0])
+        # 直接得到在中序遍历中的位置，下面算好偏移量就好了，如果容易算错，记得拿具体例子
+        pos = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:pos + 1], inorder[:pos])
+        root.right = self.buildTree(preorder[pos + 1:], inorder[pos + 1:])
+        return root
+</code></pre>
+
+<p>Java 代码：</p>
+<pre><code class="java">class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+    }
+}
+
+public class Solution {
+
+    public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
+        TreeNode root = reConstructBinaryTree(pre, 0, pre.length - 1, in, 0, in.length - 1);
+        return root;
+    }
+
+    /**
+     * 根据前序遍历数组的 [preL, preR] 和 中序遍历数组的 [inL, inR] 重新组建二叉树
+     *
+     * @param pre  前序遍历数组
+     * @param preL 前序遍历数组的区间左端点
+     * @param preR 前序遍历数组的区间右端点
+     * @param in   中序遍历数组
+     * @param inL  中序遍历数组的区间左端点
+     * @param inR  中序遍历数组的区间右端点
+     * @return 构建的新二叉树的根结点
+     */
+    private TreeNode reConstructBinaryTree(int[] pre, int preL, int preR, int[] in, int inL, int inR) {
+        if (preL &gt; preR || inL &gt; inR) {
+            return null;
+        }
+        // 构建的新二叉树的根结点一定是前序遍历数组的第 1 个元素
+        TreeNode root = new TreeNode(pre[preL]);
+        // 从中序遍历的左区间端点开始找，找到和前序遍历数组的第 1 个元素的值相等的节点
+        int i = inL;
+        while (in[i] != pre[preL] &amp;&amp; i &lt;= inR) {
+            i++;
+        }
+        // 在中序遍历数组中遍历了几个元素： i - inL
+        // 接下来就是递归调用，关键的地方在于找前序遍历数组和中序遍历数组对应的区间的端点
+        root.left = reConstructBinaryTree(pre, preL + 1, preL + (i - inL), in, inL, i - 1);
+        root.right = reConstructBinaryTree(pre, preL + (i - inL) + 1, preR, in, i + 1, inR);
+        return root;
+    }
+}
+</code></pre>
+
+<p>类似问题：LeetCode 第 106 题。</p>
+<h3 id="leetcode-106">LeetCode 第 106 题：<a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">从中序与后序遍历序列构造二叉树</a></h3>
+<p>传送门：<a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">106. 从中序与后序遍历序列构造二叉树</a>。</p>
+<blockquote>
+<p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
+<p><strong>注意:</strong>
+你可以假设树中没有重复的元素。</p>
+<p>例如，给出</p>
+<p>中序遍历 inorder = <code>[9,3,15,20,7]</code>
+后序遍历 postorder = <code>[9,15,7,20,3]</code></p>
+<p>返回如下的二叉树：
+<code>3
+   / \
+  9  20
+      / \
+     15  7</code></p>
+</blockquote>
+<p>思路：二叉树的问题，在纸上写写画画更形象。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+class Solution:
+    def buildTree(self, inorder, postorder):
+        &quot;&quot;&quot;
+        :type inorder: List[int]
+        :type postorder: List[int]
+        :rtype: TreeNode
+        &quot;&quot;&quot;
+
+        assert len(inorder) == len(postorder)
+
+        if len(inorder) == 0:
+            return None
+        if len(inorder) == 1:
+            # 这里要返回结点，而不是返回具体的数
+            return TreeNode(inorder[0])
+
+        # 最后一个结点是根结点
+        root = TreeNode(postorder[-1])
+
+        pos = inorder.index(postorder[-1])
+
+        root.left = self.buildTree(inorder[:pos], postorder[:pos])
+        root.right = self.buildTree(inorder[pos + 1:], postorder[pos:-1])
+        return root
+
+
+# 用于验证的方法
+def validate(node):
+    if node is None:
+        return
+    validate(node.left)
+    print(node.val, end=' ')
+    validate(node.right)
+
+
+if __name__ == '__main__':
+    inorder = [9, 3, 15, 20, 7]
+    postorder = [9, 15, 7, 20, 3]
+    solution = Solution()
+    root = solution.buildTree(inorder, postorder)
+    validate(root)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../08-二叉树的下一个结点/" class="btn btn-neutral float-right" title="08-二叉树的下一个结点">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../05-替换空格/" class="btn btn-neutral" title="05-替换空格"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../05-替换空格/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../08-二叉树的下一个结点/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

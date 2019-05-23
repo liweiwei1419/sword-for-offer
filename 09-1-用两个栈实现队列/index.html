@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>09-1-用两个栈实现队列 - 《剑指 Offer》（第 2 版）</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "09-1-\u7528\u4e24\u4e2a\u6808\u5b9e\u73b0\u961f\u5217";
+    var mkdocs_page_input_path = "09-1-\u7528\u4e24\u4e2a\u6808\u5b9e\u73b0\u961f\u5217.md";
+    var mkdocs_page_url = "/09-1-\u7528\u4e24\u4e2a\u6808\u5b9e\u73b0\u961f\u5217/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../03-数组中重复的数字/" class="icon icon-home"> 《剑指 Offer》（第 2 版）</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03-数组中重复的数字/">03-数组中重复的数字</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04-二维数组中的查找/">04-二维数组中的查找</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06-从尾到头打印链表/">06-从尾到头打印链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05-替换空格/">05-替换空格</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07-重建二叉树/">07-重建二叉树</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08-二叉树的下一个结点/">08-二叉树的下一个结点</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">09-1-用两个栈实现队列</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#offer-2-9-1">[剑指 Offer 第 2 版第 9-1 题] “用两个栈实现队列”做题记录</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#9-1">第 9-1 题：用两个栈实现队列</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09-2-用队列实现栈/">09-2-用队列实现栈</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../03-数组中重复的数字/">《剑指 Offer》（第 2 版）</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../03-数组中重复的数字/">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>09-1-用两个栈实现队列</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="offer-2-9-1">[剑指 Offer 第 2 版第 9-1 题] “用两个栈实现队列”做题记录</h1>
+<h3 id="9-1">第 9-1 题：用两个栈实现队列</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/36/">AcWing：用两个栈实现队列</a>，<a href="https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&amp;tqId=11158&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>请用栈实现一个队列，支持如下四种操作：</p>
+<ul>
+<li>push(x) – 将元素x插到队尾；</li>
+<li>pop() – 将队首的元素弹出，并返回该元素；</li>
+<li>peek() – 返回队首元素；</li>
+<li>empty() – 返回队列是否为空；</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>你只能使用栈的标准操作：<code>push to top</code>，<code>peek/pop from top</code>, <code>size</code> 和 <code>is empty</code>；</li>
+<li>如果你选择的编程语言没有栈的标准库，你可以使用list或者deque等模拟栈的操作；</li>
+<li>输入数据保证合法，例如，在队列为空时，不会进行<code>pop</code>或者<code>peek</code>等操作；</li>
+</ul>
+<p>样例</p>
+<p>```
+MyQueue queue = new MyQueue();</p>
+<p>queue.push(1);
+queue.push(2);
+queue.peek();  // returns 1
+queue.pop();   // returns 1
+queue.empty(); // returns false
+```</p>
+</blockquote>
+<p>分析：+ 相关的练习还有 LeetCode 第 232 题，还有第 225 题。
++ 在这里我设置了一个“上一次的操作”作为状态。具体应用如下：</p>
+<p>如果“上一次的操作”是 push：  </p>
+<p>1、我继续 push 的时候，就可以继续往栈里存数据；<br />
+2、但是如果我 pop 的话，就要把“栈底”的元素拿出来，拿出之前，要把“栈底”以上的所有元素弹出到另一个栈中。此时，如果继续出队的话，就从临时栈中陆续弹出“栈顶”元素就可以了。   </p>
+<p>如果“上一次的操作”是 pop：  </p>
+<p>1、如果我继续 pop，因为在上一次 pop 的时候，就把之前那个栈中的元素全部弹出到一个新的栈，此时这个新栈继续弹出“栈顶”元素，其实就是原来入队的顺序；<br />
+2、如果我 push，就得恢复之前入队的顺序，因此，要把这个栈中的数据全部弹出到之前入队的那个栈。  </p>
+<p>总而言之，我们可以准备两个栈 stack1 和 stack2 ：<br />
+1、使用 stack1 专门用于 push 的时候用，要“出队”之前，全部弹出到 stack2，从 stack2 弹出 ；<br />
+2、使用 stack2 专门用于 pop 的时候用，要“入队”之前，全部弹出到 stack1，从 stack1 压入 。 </p>
+<p>Java 代码：</p>
+<pre><code class="java">import java.util.Stack;
+
+public class Solution {
+    /**
+     * 专门 push 的时候用
+     */
+    private Stack&lt;Integer&gt; stack1 = new Stack&lt;Integer&gt;();
+    /**
+     * 专门 pop 的时候用
+     */
+    private Stack&lt;Integer&gt; stack2 = new Stack&lt;Integer&gt;();
+
+    private State lastState = State.PUSH;
+
+    enum State {
+        PUSH, POP
+    }
+
+    public void push(int node) {
+        if (lastState == State.PUSH) {
+            stack1.add(node);
+        } else {
+            assert lastState == State.POP;
+            // 如果上一步是 pop 的话，
+            while (!stack2.isEmpty()) {
+                stack1.add(stack2.pop());
+            }
+            stack1.add(node);
+            lastState = State.PUSH;
+        }
+    }
+
+    public int pop() {
+        if (lastState == State.POP) {
+            if (stack2.empty()) {
+                throw new IllegalArgumentException(&quot;queue is empty&quot;);
+            }
+            return stack2.pop();
+        } else {
+            // 如果上一步是 PUSH 的话
+            while (!stack1.empty()) {
+                stack2.add(stack1.pop());
+            }
+            lastState = State.POP;
+            return stack2.pop();
+        }
+    }
+}
+</code></pre>
+
+<p>注意：下面这个逻辑是错的，应该是只要 stack2 是空的，才把 stack1 的元素全部搬到 stack2，这里要小心。</p>
+<pre><code>    def __shift(self):
+        if self.stack1:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+</code></pre>
+
+<p>Python 代码：</p>
+<pre><code class="python">class MyQueue(object):
+
+    def __init__(self):
+        &quot;&quot;&quot;
+        Initialize your data structure here.
+        &quot;&quot;&quot;
+
+        self.stack1 = []
+        self.stack2 = []
+
+    def push(self, x):
+        &quot;&quot;&quot;
+        Push element x to the back of queue.
+        :type x: int
+        :rtype: void
+        &quot;&quot;&quot;
+        self.stack1.append(x)
+
+    def __shift(self):
+        if len(self.stack2) == 0:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+
+    def pop(self):
+        &quot;&quot;&quot;
+        Removes the element from in front of queue and returns that element.
+        :rtype: int
+        &quot;&quot;&quot;
+        self.__shift()
+        return self.stack2.pop()
+
+    def peek(self):
+        &quot;&quot;&quot;
+        Get the front element.
+        :rtype: int
+        &quot;&quot;&quot;
+        self.__shift()
+        return self.stack2[-1]
+
+    def empty(self):
+        &quot;&quot;&quot;
+        Returns whether the queue is empty.
+        :rtype: bool
+        &quot;&quot;&quot;
+        return len(self.stack1) == 0 and len(self.stack2) == 0
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../09-2-用队列实现栈/" class="btn btn-neutral float-right" title="09-2-用队列实现栈">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../08-二叉树的下一个结点/" class="btn btn-neutral" title="08-二叉树的下一个结点"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../08-二叉树的下一个结点/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../09-2-用队列实现栈/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
