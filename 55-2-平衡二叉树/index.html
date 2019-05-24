@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>55-2-平衡二叉树 - 《剑指 Offer》（第 2 版）</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">《剑指 Offer》（第 2 版）</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">第 1 - 20 题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../03-数组中重复的数字/">3-数组中重复的数字</a>
+</li>
+                                    
+<li >
+    <a href="../04-二维数组中的查找/">4-二维数组中的查找</a>
+</li>
+                                    
+<li >
+    <a href="../05-替换空格/">5-替换空格</a>
+</li>
+                                    
+<li >
+    <a href="../06-从尾到头打印链表/">6-从尾到头打印链表</a>
+</li>
+                                    
+<li >
+    <a href="../07-重建二叉树/">7-重建二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../08-二叉树的下一个结点/">8-二叉树的下一个结点</a>
+</li>
+                                    
+<li >
+    <a href="../09-1-用两个栈实现队列/">9-1-用两个栈实现队列</a>
+</li>
+                                    
+<li >
+    <a href="../09-2-用队列实现栈/">9-2-用队列实现栈</a>
+</li>
+                                    
+<li >
+    <a href="../10-1-斐波那契数列/">10-1-斐波那契数列</a>
+</li>
+                                    
+<li >
+    <a href="../10-1-跳台阶/">10-1-跳台阶</a>
+</li>
+                                    
+<li >
+    <a href="../10-2-变态跳台阶/">10-2-变态跳台阶</a>
+</li>
+                                    
+<li >
+    <a href="../10-3-矩形覆盖/">10-3-矩形覆盖</a>
+</li>
+                                    
+<li >
+    <a href="../15-二进制中1的个数/">15-二进制中1的个数</a>
+</li>
+                                    
+<li >
+    <a href="../16-数值的整数次方/">16-数值的整数次方</a>
+</li>
+                                    
+<li >
+    <a href="../17-打印从 1 到最大的 n 位数/">17-打印从 1 到最大的 n 位数</a>
+</li>
+                                    
+<li >
+    <a href="../18-删除链表中重复的结点/">18-删除链表中重复的结点</a>
+</li>
+                                    
+<li >
+    <a href="../19-正则表达式匹配/">19-正则表达式匹配</a>
+</li>
+                                    
+<li >
+    <a href="../20-表示数值的字符串/">20-表示数值的字符串</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">第 21 - 40 题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../21-调整数组顺序使奇数位于偶数前面/">21-调整数组顺序使奇数位于偶数前面</a>
+</li>
+                                    
+<li >
+    <a href="../22-链表中倒数第k个结点/">22-链表中倒数第k个结点</a>
+</li>
+                                    
+<li >
+    <a href="../23-链表中环的入口结点/">23-链表中环的入口结点</a>
+</li>
+                                    
+<li >
+    <a href="../24-反转链表/">24-反转链表</a>
+</li>
+                                    
+<li >
+    <a href="../25-合并两个排序的链表/">25-合并两个排序的链表</a>
+</li>
+                                    
+<li >
+    <a href="../27-二叉树的镜像/">27-二叉树的镜像</a>
+</li>
+                                    
+<li >
+    <a href="../28-对称的二叉树/">28-对称的二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../29-顺时针打印矩阵/">29-顺时针打印矩阵</a>
+</li>
+                                    
+<li >
+    <a href="../30-包含min函数的栈/">30-包含min函数的栈</a>
+</li>
+                                    
+<li >
+    <a href="../31-栈的压入、弹出序列/">31-栈的压入、弹出序列</a>
+</li>
+                                    
+<li >
+    <a href="../32-1-从上往下打印二叉树/">32-1-从上往下打印二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../32-2-把二叉树打印成多行/">32-2-把二叉树打印成多行</a>
+</li>
+                                    
+<li >
+    <a href="../32-3-按之字形顺序打印二叉树/">32-3-按之字形顺序打印二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../33-二叉搜索树的后序遍历序列/">33-二叉搜索树的后序遍历序列</a>
+</li>
+                                    
+<li >
+    <a href="../34-二叉树中和为某一值的路径/">34-二叉树中和为某一值的路径</a>
+</li>
+                                    
+<li >
+    <a href="../35-复杂链表的复制/">35-复杂链表的复制</a>
+</li>
+                                    
+<li >
+    <a href="../36-二叉搜索树与双向链表/">36-二叉搜索树与双向链表</a>
+</li>
+                                    
+<li >
+    <a href="../37-序列化二叉树/">37-序列化二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../38-字符串的排列/">38-字符串的排列</a>
+</li>
+                                    
+<li >
+    <a href="../39-数组中出现次数超过一半的数字/">39-数组中出现次数超过一半的数字</a>
+</li>
+                                    
+<li >
+    <a href="../40-最小的K个数/">40-最小的K个数</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">第 41 - 60 题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../41-数据流中的中位数/">41-数据流中的中位数</a>
+</li>
+                                    
+<li >
+    <a href="../42-连续子数组的最大和/">42-连续子数组的最大和</a>
+</li>
+                                    
+<li >
+    <a href="../44-数字序列中某一位的数字/">44-数字序列中某一位的数字</a>
+</li>
+                                    
+<li >
+    <a href="../45-把数组排成最小的数/">45-把数组排成最小的数</a>
+</li>
+                                    
+<li >
+    <a href="../46-把数字翻译成字符串/">46-把数字翻译成字符串</a>
+</li>
+                                    
+<li >
+    <a href="../47-礼物的最大值/">47-礼物的最大值</a>
+</li>
+                                    
+<li >
+    <a href="../48-最长不重复字符串的子字符串/">48-最长不重复字符串的子字符串</a>
+</li>
+                                    
+<li >
+    <a href="../49-丑数/">49-丑数</a>
+</li>
+                                    
+<li >
+    <a href="../50-2-字符流中第一个不重复的字符/">50-2-字符流中第一个不重复的字符</a>
+</li>
+                                    
+<li >
+    <a href="../51-数组中的逆序对/">51-数组中的逆序对</a>
+</li>
+                                    
+<li >
+    <a href="../52-两个链表的第一个公共结点/">52-两个链表的第一个公共结点</a>
+</li>
+                                    
+<li >
+    <a href="../53-在排序数组中查找数字/">53-在排序数组中查找数字</a>
+</li>
+                                    
+<li >
+    <a href="../54-二叉搜索树的第k个结点/">54-二叉搜索树的第k个结点</a>
+</li>
+                                    
+<li >
+    <a href="../55-1-二叉树的深度/">55-1-二叉树的深度</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">55-2-平衡二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../56-数字在排序数组中出现的次数/">56-数字在排序数组中出现的次数</a>
+</li>
+                                    
+<li >
+    <a href="../57-1-滑动窗口的最大值/">57-1-滑动窗口的最大值</a>
+</li>
+                                    
+<li >
+    <a href="../57-2-队列的最大值/">57-2-队列的最大值</a>
+</li>
+                                    
+<li >
+    <a href="../58-1-翻转单词序列/">58-1-翻转单词序列</a>
+</li>
+                                    
+<li >
+    <a href="../58-2-左旋转字符串/">58-2-左旋转字符串</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">第 61 - 68 题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../61-n 个骰子的点数/">61-n 个骰子的点数</a>
+</li>
+                                    
+<li >
+    <a href="../62-孩子们的游戏(圆圈中最后剩下的数)/">62-孩子们的游戏(圆圈中最后剩下的数)</a>
+</li>
+                                    
+<li >
+    <a href="../63-股票的最大利润/">63-股票的最大利润</a>
+</li>
+                                    
+<li >
+    <a href="../64-求1+2+3+...+n/">64-求1+2+3+...+n</a>
+</li>
+                                    
+<li >
+    <a href="../65-不用加减乘除做加法/">65-不用加减乘除做加法</a>
+</li>
+                                    
+<li >
+    <a href="../66-构建乘积数组/">66-构建乘积数组</a>
+</li>
+                                    
+<li >
+    <a href="../67-把字符串转换成整数/">67-把字符串转换成整数</a>
+</li>
+                                    
+<li >
+    <a href="../68-树中两个节点的最近公共祖先/">68-树中两个节点的最近公共祖</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../55-1-二叉树的深度/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../56-数字在排序数组中出现的次数/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#offer-2-55_2">[剑指 Offer 第 2 版第 55_2 题] “平衡二叉树”做题记录</a></li>
+            <li><a href="#55-2">第 55-2 题：平衡二叉树</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="offer-2-55_2">[剑指 Offer 第 2 版第 55_2 题] “平衡二叉树”做题记录</h1>
+<h3 id="55-2">第 55-2 题：平衡二叉树</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/68/">平衡二叉树</a>，<a href="https://www.nowcoder.com/practice/8b3b95850edb4115918ecebdf1b4d222?tpId=13&amp;tqId=11192&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>输入一棵二叉树的根结点，判断该树是不是平衡二叉树。</p>
+<p>如果某二叉树中任意结点的左右子树的深度相差不超过 $1$，那么它就是一棵平衡二叉树。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>规定空树也是一棵平衡二叉树。</li>
+</ul>
+<p>样例：</p>
+<p>输入：二叉树 <code>[5,7,11,null,null,12,9,null,null,null,null]</code> 如下所示，
+<code>5
+    / \
+   7  11
+      / \
+     12  9</code>
+输出：true</p>
+</blockquote>
+<p>思路：深度优先遍历（<strong>后序遍历</strong>）。</p>
+<p>Python 代码：</p>
+<pre><code class="python"># Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    # 全局变量
+    flag = 1
+
+    def isBalanced(self, root):
+        &quot;&quot;&quot;
+        :type root: TreeNode
+        :rtype: bool
+        &quot;&quot;&quot;
+
+        if root is None:
+            return True
+        self.__dfs(root)
+        return self.flag
+
+    def __dfs(self, node):
+        &quot;&quot;&quot;
+        返回以 root 为根的二叉树的高度，如果左右子树其中之一不是 AVL ，则返回 -1
+        :param node:
+        :return:
+        &quot;&quot;&quot;
+        if node is None:
+            return 0
+        left = self.__dfs(node.left)
+        right = self.__dfs(node.right)
+
+        if abs(left - right) &gt; 1:
+            self.flag = 0
+            # 这里不能写 return
+        return max(left, right) + 1
+</code></pre>
+
+<p>Java 代码：</p>
+<pre><code class="java">class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+    }
+}
+
+// 第 55 题：二叉树的深度（判断是不是平衡二叉树）
+// 可以提交到 LeetCode 第 110 题的测试用例
+// 参考资料1：
+// https://blog.csdn.net/derrantcm/article/details/46771529
+public class Solution {
+
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        int[] depth = new int[1];
+        depth[0] = 0;
+        return postOrder(root, depth);
+    }
+
+    // 后序遍历
+    private boolean postOrder(TreeNode node, int[] depth) {
+        if (node == null) {
+            depth[0] = 0;
+            return true;
+        }
+        int[] left = new int[1];
+        int[] right = new int[1];
+        // 如果左子树和右子树都不是平衡二叉树，直接就走到最后，返回 false
+        if (postOrder(node.left, left) &amp;&amp; postOrder(node.right, right)) {
+            int diff = left[0] - right[0];
+            if (diff &lt;= 1 &amp;&amp; diff &gt;= -1) {
+                depth[0] = Integer.max(left[0], right[0]) + 1;
+                return true;
+            }
+        }
+        return false;
+    }
+}
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

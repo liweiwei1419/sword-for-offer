@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>[剑指 Offer 第 2 版第 12 题] “矩阵中的路径”做题记录 - 《剑指 Offer》（第 2 版）</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">《剑指 Offer》（第 2 版）</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">第 1 - 20 题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../03-数组中重复的数字/">3-数组中重复的数字</a>
+</li>
+                                    
+<li >
+    <a href="../04-二维数组中的查找/">4-二维数组中的查找</a>
+</li>
+                                    
+<li >
+    <a href="../05-替换空格/">5-替换空格</a>
+</li>
+                                    
+<li >
+    <a href="../06-从尾到头打印链表/">6-从尾到头打印链表</a>
+</li>
+                                    
+<li >
+    <a href="../07-重建二叉树/">7-重建二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../08-二叉树的下一个结点/">8-二叉树的下一个结点</a>
+</li>
+                                    
+<li >
+    <a href="../09-1-用两个栈实现队列/">9-1-用两个栈实现队列</a>
+</li>
+                                    
+<li >
+    <a href="../09-2-用队列实现栈/">9-2-用队列实现栈</a>
+</li>
+                                    
+<li >
+    <a href="../10-1-斐波那契数列/">10-1-斐波那契数列</a>
+</li>
+                                    
+<li >
+    <a href="../10-1-跳台阶/">10-1-跳台阶</a>
+</li>
+                                    
+<li >
+    <a href="../10-2-变态跳台阶/">10-2-变态跳台阶</a>
+</li>
+                                    
+<li >
+    <a href="../10-3-矩形覆盖/">10-3-矩形覆盖</a>
+</li>
+                                    
+<li >
+    <a href="../15-二进制中1的个数/">15-二进制中1的个数</a>
+</li>
+                                    
+<li >
+    <a href="../16-数值的整数次方/">16-数值的整数次方</a>
+</li>
+                                    
+<li >
+    <a href="../17-打印从 1 到最大的 n 位数/">17-打印从 1 到最大的 n 位数</a>
+</li>
+                                    
+<li >
+    <a href="../18-删除链表中重复的结点/">18-删除链表中重复的结点</a>
+</li>
+                                    
+<li >
+    <a href="../19-正则表达式匹配/">19-正则表达式匹配</a>
+</li>
+                                    
+<li >
+    <a href="../20-表示数值的字符串/">20-表示数值的字符串</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">第 21 - 40 题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../21-调整数组顺序使奇数位于偶数前面/">21-调整数组顺序使奇数位于偶数前面</a>
+</li>
+                                    
+<li >
+    <a href="../22-链表中倒数第k个结点/">22-链表中倒数第k个结点</a>
+</li>
+                                    
+<li >
+    <a href="../23-链表中环的入口结点/">23-链表中环的入口结点</a>
+</li>
+                                    
+<li >
+    <a href="../24-反转链表/">24-反转链表</a>
+</li>
+                                    
+<li >
+    <a href="../25-合并两个排序的链表/">25-合并两个排序的链表</a>
+</li>
+                                    
+<li >
+    <a href="../27-二叉树的镜像/">27-二叉树的镜像</a>
+</li>
+                                    
+<li >
+    <a href="../28-对称的二叉树/">28-对称的二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../29-顺时针打印矩阵/">29-顺时针打印矩阵</a>
+</li>
+                                    
+<li >
+    <a href="../30-包含min函数的栈/">30-包含min函数的栈</a>
+</li>
+                                    
+<li >
+    <a href="../31-栈的压入、弹出序列/">31-栈的压入、弹出序列</a>
+</li>
+                                    
+<li >
+    <a href="../32-1-从上往下打印二叉树/">32-1-从上往下打印二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../32-2-把二叉树打印成多行/">32-2-把二叉树打印成多行</a>
+</li>
+                                    
+<li >
+    <a href="../32-3-按之字形顺序打印二叉树/">32-3-按之字形顺序打印二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../33-二叉搜索树的后序遍历序列/">33-二叉搜索树的后序遍历序列</a>
+</li>
+                                    
+<li >
+    <a href="../34-二叉树中和为某一值的路径/">34-二叉树中和为某一值的路径</a>
+</li>
+                                    
+<li >
+    <a href="../35-复杂链表的复制/">35-复杂链表的复制</a>
+</li>
+                                    
+<li >
+    <a href="../36-二叉搜索树与双向链表/">36-二叉搜索树与双向链表</a>
+</li>
+                                    
+<li >
+    <a href="../37-序列化二叉树/">37-序列化二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../38-字符串的排列/">38-字符串的排列</a>
+</li>
+                                    
+<li >
+    <a href="../39-数组中出现次数超过一半的数字/">39-数组中出现次数超过一半的数字</a>
+</li>
+                                    
+<li >
+    <a href="../40-最小的K个数/">40-最小的K个数</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">第 41 - 60 题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../41-数据流中的中位数/">41-数据流中的中位数</a>
+</li>
+                                    
+<li >
+    <a href="../42-连续子数组的最大和/">42-连续子数组的最大和</a>
+</li>
+                                    
+<li >
+    <a href="../44-数字序列中某一位的数字/">44-数字序列中某一位的数字</a>
+</li>
+                                    
+<li >
+    <a href="../45-把数组排成最小的数/">45-把数组排成最小的数</a>
+</li>
+                                    
+<li >
+    <a href="../46-把数字翻译成字符串/">46-把数字翻译成字符串</a>
+</li>
+                                    
+<li >
+    <a href="../47-礼物的最大值/">47-礼物的最大值</a>
+</li>
+                                    
+<li >
+    <a href="../48-最长不重复字符串的子字符串/">48-最长不重复字符串的子字符串</a>
+</li>
+                                    
+<li >
+    <a href="../49-丑数/">49-丑数</a>
+</li>
+                                    
+<li >
+    <a href="../50-2-字符流中第一个不重复的字符/">50-2-字符流中第一个不重复的字符</a>
+</li>
+                                    
+<li >
+    <a href="../51-数组中的逆序对/">51-数组中的逆序对</a>
+</li>
+                                    
+<li >
+    <a href="../52-两个链表的第一个公共结点/">52-两个链表的第一个公共结点</a>
+</li>
+                                    
+<li >
+    <a href="../53-在排序数组中查找数字/">53-在排序数组中查找数字</a>
+</li>
+                                    
+<li >
+    <a href="../54-二叉搜索树的第k个结点/">54-二叉搜索树的第k个结点</a>
+</li>
+                                    
+<li >
+    <a href="../55-1-二叉树的深度/">55-1-二叉树的深度</a>
+</li>
+                                    
+<li >
+    <a href="../55-2-平衡二叉树/">55-2-平衡二叉树</a>
+</li>
+                                    
+<li >
+    <a href="../56-数字在排序数组中出现的次数/">56-数字在排序数组中出现的次数</a>
+</li>
+                                    
+<li >
+    <a href="../57-1-滑动窗口的最大值/">57-1-滑动窗口的最大值</a>
+</li>
+                                    
+<li >
+    <a href="../57-2-队列的最大值/">57-2-队列的最大值</a>
+</li>
+                                    
+<li >
+    <a href="../58-1-翻转单词序列/">58-1-翻转单词序列</a>
+</li>
+                                    
+<li >
+    <a href="../58-2-左旋转字符串/">58-2-左旋转字符串</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">第 61 - 68 题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../61-n 个骰子的点数/">61-n 个骰子的点数</a>
+</li>
+                                    
+<li >
+    <a href="../62-孩子们的游戏(圆圈中最后剩下的数)/">62-孩子们的游戏(圆圈中最后剩下的数)</a>
+</li>
+                                    
+<li >
+    <a href="../63-股票的最大利润/">63-股票的最大利润</a>
+</li>
+                                    
+<li >
+    <a href="../64-求1+2+3+...+n/">64-求1+2+3+...+n</a>
+</li>
+                                    
+<li >
+    <a href="../65-不用加减乘除做加法/">65-不用加减乘除做加法</a>
+</li>
+                                    
+<li >
+    <a href="../66-构建乘积数组/">66-构建乘积数组</a>
+</li>
+                                    
+<li >
+    <a href="../67-把字符串转换成整数/">67-把字符串转换成整数</a>
+</li>
+                                    
+<li >
+    <a href="../68-树中两个节点的最近公共祖先/">68-树中两个节点的最近公共祖</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#offer-2-12">[剑指 Offer 第 2 版第 12 题] “矩阵中的路径”做题记录</a></li>
+            <li><a href="#12">第 12 题：矩阵中的路径</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="offer-2-12">[剑指 Offer 第 2 版第 12 题] “矩阵中的路径”做题记录</h1>
+<h3 id="12">第 12 题：矩阵中的路径</h3>
+<p>传送门：<a href="https://www.acwing.com/problem/content/21/">AcWing：矩阵中的路径</a>。</p>
+<blockquote>
+<p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。</p>
+<p>路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。</p>
+<p>如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>输入的路径不为空；</li>
+<li>所有出现的字符均为大写英文字母；</li>
+</ul>
+<p>样例：</p>
+<p>```
+matrix=
+[
+       ["A","B","C","E"],
+       ["S","F","C","S"],
+       ["A","D","E","E"]
+]</p>
+<p>str="BCCE" , return "true" </p>
+<p>str="ASAE" , return "false"
+```</p>
+</blockquote>
+<p>思路：典型的 floodfill 解法，本质上是递归回溯算法。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class Solution(object):
+    directions = [(-1, 0), (1, 0), (0, 1), (0, -1)]
+
+    def hasPath(self, matrix, string):
+        &quot;&quot;&quot;
+        :type matrix: List[List[str]]
+        :type string: str
+        :rtype: bool
+        &quot;&quot;&quot;
+        rows = len(matrix)
+        if rows == 0:
+            return False
+        cols = len(matrix[0])
+
+        marked = [[False for _ in range(cols)] for _ in range(rows)]
+
+        for i in range(rows):
+            for j in range(cols):
+                if self.__has_path(matrix, string, 0, i, j, marked, rows, cols):
+                    return True
+        return False
+
+    def __has_path(self, matrix, word, index, start_x, start_y, marked, m, n):
+        # 注意：首先判断极端情况
+        if index == len(word) - 1:
+            return matrix[start_x][start_y] == word[-1]
+        if matrix[start_x][start_y] == word[index]:
+            # 先占住这个位置，搜索不成功的话，要释放掉
+            marked[start_x][start_y] = True
+            for direction in self.directions:
+                new_x = start_x + direction[0]
+                new_y = start_y + direction[1]
+                if 0 &lt;= new_x &lt; m and 0 &lt;= new_y &lt; n and not marked[new_x][new_y]:
+                    if self.__has_path(matrix, word, index + 1, new_x, new_y, marked, m, n):
+                        return True
+            marked[start_x][start_y] = False
+        return False
+
+
+if __name__ == '__main__':
+    matrix = [
+        [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;E&quot;],
+        [&quot;S&quot;, &quot;F&quot;, &quot;E&quot;, &quot;S&quot;],
+        [&quot;A&quot;, &quot;D&quot;, &quot;E&quot;, &quot;E&quot;]
+    ]
+
+    str = &quot;ABCEFSADEESE&quot;
+
+    solution = Solution()
+    result = solution.hasPath(matrix, str)
+    print(result)
+</code></pre>
+
+<p>同 LeetCode 第 79 题，传送门：<a href="https://leetcode-cn.com/problems/word-search/">79. 单词搜索</a>，<a href="https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&amp;tqId=11218&amp;tPage=4&amp;rp=4&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">牛客网 online judge 地址</a>。</p>
+<blockquote>
+<p>给定一个二维网格和一个单词，找出该单词是否存在于网格中。</p>
+<p>单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</p>
+<p><strong>示例:</strong></p>
+<p><code>board =
+[
+       ['A','B','C','E'],
+       ['S','F','C','S'],
+       ['A','D','E','E']
+]</code></p>
+<p>给定 word = "ABCCED", 返回 true.
+给定 word = "SEE", 返回 true.
+给定 word = "ABCB", 返回 false.</p>
+</blockquote>
+<p>思路：其实就是 floodfill 算法，这是一个非常基础的算法，一定要掌握。特别要弄清楚，<code>marked</code> 数组的作用，一开始要占住这个位置，发现此路不通的时候，要释放掉。</p>
+<p>Python 代码：</p>
+<pre><code class="python">class Solution:
+    #         (x-1,y)
+    # (x,y-1) (x,y) (x,y+1)
+    #         (x+1,y)
+
+    directions = [(0, -1), (-1, 0), (0, 1), (1, 0)]
+
+    def exist(self, board, word):
+        &quot;&quot;&quot;
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        &quot;&quot;&quot;
+
+        m = len(board)
+        n = len(board[0])
+
+        marked = [[False for _ in range(n)] for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                # 对每一个格子都从头开始搜索
+                if self.__search_word(board, word, 0, i, j, marked, m, n):
+                    return True
+        return False
+
+    def __search_word(self, board, word, index, start_x, start_y, marked, m, n):
+        # 先写递归终止条件
+        if index == len(word) - 1:
+            return board[start_x][start_y] == word[index]
+
+        # 中间匹配了，再继续搜索
+        if board[start_x][start_y] == word[index]:
+            # 先占住这个位置，搜索不成功的话，要释放掉
+            marked[start_x][start_y] = True
+            for direction in self.directions:
+                new_x = start_x + direction[0]
+                new_y = start_y + direction[1]
+                if 0 &lt;= new_x &lt; m and 0 &lt;= new_y &lt; n and \
+                        not marked[new_x][new_y] and \
+                        self.__search_word(board, word,
+                                           index + 1,
+                                           new_x, new_y,
+                                           marked, m, n):
+                    return True
+            marked[start_x][start_y] = False
+        return False
+</code></pre>
+
+<p>Java 代码：</p>
+<pre><code class="java">public class Solution {
+
+    /**
+     *       x-1,y
+     * x,y-1   x,y    x,y+1
+     *       x+1,y
+     */
+    private int[][] direct = new int[][]{{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+
+    public boolean hasPath(char[] matrix, int rows, int cols, char[] str) {
+        int len = matrix.length;
+        if (len == 0) {
+            return false;
+        }
+        boolean[] marked = new boolean[len];
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                if (dfs(matrix, rows, cols, str, str.length, marked, i, j, 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean dfs(char[] matrix, int rows, int cols, char[] str, int len, boolean[] marked, int i, int j, int start) {
+        // 匹配到最后，说明找到一条路径
+        int index = getIndex(i, j, cols);
+        if (start == len - 1) {
+            return matrix[index] == str[start];
+        }
+        // 要特别小心！
+        marked[index] = true;
+        if (matrix[index] == str[start]) {
+            // 当前匹配了，才开始尝试走后面的路
+            for (int k = 0; k &lt; 4; k++) {
+                // 特别小心，一定是一个初始化的新的变量
+                int newi = i + direct[k][0];
+                int newj = j + direct[k][1];
+                int nextIndex = getIndex(newi, newj, cols);
+                if (inArea(newi, newj, rows, cols) &amp;&amp; !marked[nextIndex]) {
+                    // marked[nextIndex] = true; 不在这里设置
+                    if (dfs(matrix, rows, cols, str, len, marked, newi, newj, start + 1)) {
+                        return true;
+                    }
+                    // marked[nextIndex] = false; 不在这里设置
+                }
+            }
+        }
+        // 要特别小心！
+        marked[index] = false;
+        return false;
+    }
+
+    private int getIndex(int x, int y, int cols) {
+        return x * cols + y;
+    }
+
+    private boolean inArea(int x, int y, int rows, int cols) {
+        return x &gt;= 0 &amp;&amp; x &lt; rows &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; cols;
+    }
+
+    public static void main(String[] args) {
+        char[] matrix = new char[]{'a', 'b', 't', 'g',
+                'c', 'f', 'c', 's',
+                'j', 'd', 'e', 'h'};
+        int rows = 3;
+        int cols = 4;
+        Solution solution = new Solution();
+        char[] str = &quot;hscfdeh&quot;.toCharArray();
+        boolean hasPath = solution.hasPath(matrix, rows, cols, str);
+        System.out.println(hasPath);
+    }
+}
+</code></pre>
+
+<p>Java 代码：</p>
+<pre><code class="java">public class Solution {
+
+    /**
+     *       x-1,y
+     * x,y-1   x,y    x,y+1
+     *       x+1,y
+     */
+    private int[][] direct = new int[][]{{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+
+    public boolean hasPath(char[] matrix, int rows, int cols, char[] str) {
+        int len = matrix.length;
+        if (len == 0) {
+            return false;
+        }
+        boolean[] marked = new boolean[len];
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                if (dfs(matrix, rows, cols, str, str.length, marked, i, j, 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean dfs(char[] matrix, int rows, int cols, char[] str, int len, boolean[] marked, int i, int j, int start) {
+        // 匹配到最后，说明找到一条路径
+        int index = getIndex(i, j, cols);
+        if (start == len - 1) {
+            return matrix[index] == str[start];
+        }
+        // 要特别小心！
+        marked[index] = true;
+        if (matrix[index] == str[start]) {
+            // 当前匹配了，才开始尝试走后面的路
+            for (int k = 0; k &lt; 4; k++) {
+                // 特别小心，一定是一个初始化的新的变量
+                int newi = i + direct[k][0];
+                int newj = j + direct[k][1];
+                int nextIndex = getIndex(newi, newj, cols);
+                if (inArea(newi, newj, rows, cols) &amp;&amp; !marked[nextIndex]) {
+                    // marked[nextIndex] = true; 不在这里设置
+                    if (dfs(matrix, rows, cols, str, len, marked, newi, newj, start + 1)) {
+                        return true;
+                    }
+                    // marked[nextIndex] = false; 不在这里设置
+                }
+            }
+        }
+        // 要特别小心！
+        marked[index] = false;
+        return false;
+    }
+
+    private int getIndex(int x, int y, int cols) {
+        return x * cols + y;
+    }
+
+    private boolean inArea(int x, int y, int rows, int cols) {
+        return x &gt;= 0 &amp;&amp; x &lt; rows &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; cols;
+    }
+
+    public static void main(String[] args) {
+        char[] matrix = new char[]{'a', 'b', 't', 'g',
+                'c', 'f', 'c', 's',
+                'j', 'd', 'e', 'h'};
+        int rows = 3;
+        int cols = 4;
+        Solution solution = new Solution();
+        char[] str = &quot;hscfdeh&quot;.toCharArray();
+        boolean hasPath = solution.hasPath(matrix, rows, cols, str);
+        System.out.println(hasPath);
+    }
+}
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
