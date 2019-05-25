@@ -62,9 +62,9 @@ ul.nav .main {
 
 code {
     padding: 1px 3px;
-    background: #ecf0f1;
+    background: #f5f5f5;
     border: solid 1px #ccc;
-    color: #7b8a8b;
+    color: #333;
 }
 
 pre code {
@@ -73,7 +73,11 @@ pre code {
 }
 
 a code {
-    color: #18bc9c;
+    color: #dd4814;
+}
+
+a:hover code, a:focus code {
+    color: #97310e;
 }
 
 kbd {
@@ -94,14 +98,14 @@ footer {
 }
 
 .modal-dialog {
-    margin-top: 70px;
+    margin-top: 60px;
 }
 
 /* Style the admonitions. */
 
 .admonition {
-    margin-bottom: 21px;
-    border: 1px solid #ecf0f1;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -112,11 +116,11 @@ footer {
     padding: 10px 15px;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
-    border-bottom: 1px solid #ecf0f1;
-    color: #2c3e50;
-    background-color: #ecf0f1;
-    font-size: 17px;
-    font-weight: 400;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    font-weight: 500;
     line-height: 1.1;
 }
 
@@ -137,30 +141,30 @@ footer {
 /* Style each kind of admonition. */
 
 .admonition.note, .admonition.note > .admonition-title {
-    border-color: #3498db;
+    border-color: #bce8f1;
 }
 
 .admonition.note > .admonition-title {
-    color: #fff;
-    background-color: #3498db;
+    color: #3a87ad;
+    background-color: #d9edf7;
 }
 
 .admonition.warning, .admonition.warning > .admonition-title {
-    border-color: #f39c12;
+    border-color: #fbeed5;
 }
 
 .admonition.warning > .admonition-title {
-    color: #fff;
-    background-color: #f39c12;
+    color: #c09853;
+    background-color: #fcf8e3;
 }
 
 .admonition.danger, .admonition.danger > .admonition-title {
-    border-color: #e74c3c;
+    border-color: #eed3d7;
 }
 
 .admonition.danger > .admonition-title {
-    color: #fff;
-    background-color: #e74c3c;
+    color: #b94a48;
+    background-color: #f2dede;
 }
 
 /*
