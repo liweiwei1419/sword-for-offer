@@ -495,7 +495,50 @@
 </code></pre>
 
 <p>说明：归并两个有序数组的时候，我们要借助额外的辅助空间，为此可以全局使用一个和原始数组等长的辅助数组，否则每一次进入 <code>merge</code> 函数都要 new 新数组，开销很大。</p>
-<p>上述解法的缺点是修改了原始数组，排序完成以后，逆序数就计算出来了。为此：（1）我们可以引入一个索引数组；（2）或者直接拷贝一个原始数组，这样就不用修改原始数组了。</p></div>
+<p>上述解法的缺点是修改了原始数组，排序完成以后，逆序数就计算出来了。为此：（1）我们可以引入一个索引数组；（2）或者直接拷贝一个原始数组，这样就不用修改原始数组了。</p>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+  inlineMath: [['$','$'], ['\\(','\\)']],
+  processEscapes: true
+  },
+displayAlign : "left",
+TeX: {
+        equationNumbers: {
+            autoNumber: "all",
+            useLabelIds: true
+        }
+    },
+    "HTML-CSS": {
+        linebreaks: {
+            automatic: true
+        },
+        scale: 100,
+        styles: {
+          ".MathJax_Display": {
+            "text-align": "left",
+            "width" : "auto",
+            "margin": "10px 0px 10px 0px !important",
+            "background-color": "#f5f5f5 !important",
+            "border-radius": "3px !important",
+            border:  "1px solid #ccc !important",
+            padding: "5px 5px 5px 5px !important"
+          },
+          ".MathJax": {
+            "background-color": "#f5f5f5 !important",
+            padding: "2px 2px 2px 2px !important"
+          }
+        }
+    },
+    SVG: {
+        linebreaks: {
+            automatic: true
+        }
+    }
+});
+</script></div>
         </div>
 
         <footer class="col-md-12">
