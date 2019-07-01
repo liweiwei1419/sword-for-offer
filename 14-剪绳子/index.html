@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>[剑指 Offer 第 2 版第 14 题] “剪绳子”做题记录 - 《剑指 Offer》（第 2 版）</title>
+        <title>14-剪绳子 - 《剑指 Offer》（第 2 版）</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -49,7 +49,7 @@
                             <li >
                                 <a href="..">首页</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">第 1 - 20 题 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -99,6 +99,22 @@
                                     
 <li >
     <a href="../10-3-矩形覆盖/">10-3-矩形覆盖</a>
+</li>
+                                    
+<li >
+    <a href="../11-旋转数组的最小数字/">11-旋转数组的最小数字</a>
+</li>
+                                    
+<li >
+    <a href="../12-矩阵中的路径/">12-矩阵中的路径</a>
+</li>
+                                    
+<li >
+    <a href="../13-机器人的运动范围/">13-机器人的运动范围</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">14-剪绳子</a>
 </li>
                                     
 <li >
@@ -345,6 +361,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li >
+                                <a rel="next" href="../13-机器人的运动范围/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../15-二进制中1的个数/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -475,7 +501,8 @@
 <p>分析：这是一个很经典的问题。可以使用贪心算法。</p>
 <p>贪心算法：$2(n-2)&gt;n$ 得到 $n &gt; 4$，$3(n-3)&gt;n$ ，得到 $n&gt;4.5$，即 $n$ 大于等于 $5$ 的时候。</p>
 <p>结论：不能包含 $1$ ，所有的加法因子只能有 $2$ 和 $3$，最多只有 $2$ 个 $2$，因此加法因子里没有 $4$ 。</p>
-<p><img alt="image-20190108000201883" src="https://ws2.sinaimg.cn/large/006tNc79ly1fyygsgdhsxj30za0digot.jpg" /></p>
+<p>贪心选择的证明，可以参考这里：https://leetcode-cn.com/problems/integer-break/solution/tan-xin-xuan-ze-xing-zhi-de-jian-dan-zheng-ming-py/。</p>
+<p><img alt="14-1" src="https://liweiwei1419.github.io/images/sword-for-offer/14-1.png" /></p>
 <p>Java 代码：</p>
 <pre><code class="java">class Solution2 {
     public int integerBreak(int n) {
@@ -507,7 +534,7 @@
 </code></pre>
 
 <p>C++ 代码：</p>
-<p><img alt="image-20190108000417713" src="http://upload-images.jianshu.io/upload_images/414598-92c4cf93cd81b59f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p><img alt="14-2" src="https://liweiwei1419.github.io/images/sword-for-offer/14-2.png" /></p>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 <script type="text/x-mathjax-config">

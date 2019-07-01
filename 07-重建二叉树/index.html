@@ -102,6 +102,22 @@
 </li>
                                     
 <li >
+    <a href="../11-旋转数组的最小数字/">11-旋转数组的最小数字</a>
+</li>
+                                    
+<li >
+    <a href="../12-矩阵中的路径/">12-矩阵中的路径</a>
+</li>
+                                    
+<li >
+    <a href="../13-机器人的运动范围/">13-机器人的运动范围</a>
+</li>
+                                    
+<li >
+    <a href="../14-剪绳子/">14-剪绳子</a>
+</li>
+                                    
+<li >
     <a href="../15-二进制中1的个数/">15-二进制中1的个数</a>
 </li>
                                     
@@ -399,8 +415,8 @@
 <li>用类似二叉树插入节点的方式建立二叉树，即使用递归函数，返回新创建二叉树根节点的方式，将新的二叉树的根结点挂接到原来的二叉树的左右结点中；</li>
 <li>前序遍历的第 1 个元素就是二叉树的根结点。根据这一点，不难写出递归函数的代码。注意这是以“输入的前序遍历和中序遍历的结果中都不含重复的数字”为前提的。</li>
 </ul>
-<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-3" src="http://upload-images.jianshu.io/upload_images/414598-5f1d0a85e8d27400.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
-<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-4" src="http://upload-images.jianshu.io/upload_images/414598-70ed05bd120aa483.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-3" src="https://liweiwei1419.github.io/images/sword-for-offer/7-1.jpg" /></p>
+<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-4" src="https://liweiwei1419.github.io/images/sword-for-offer/7-2.jpg" /></p>
 <p>思路：递归重建。二叉树的 DFS 有如下三种遍历方式：</p>
 <ul>
 <li>前序遍历：先访问根结点，再访问左子结点，最后访问右子结点。</li>
@@ -409,8 +425,8 @@
 </ul>
 <p>本题为前序遍历和中序遍历，最少需要两种遍历方式，才能重建二叉树。</p>
 <p>关键：前序遍历数组的第 $1$ 个数（索引为 $0$）的数一定是二叉树的根结点，于是可以在中序遍历中找这个根结点的索引，然后把“前序遍历数组”和“中序遍历数组”分为两个部分，就分别对应二叉树的左子树和右子树，分别递归完成就可以了。</p>
-<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-1" src="http://upload-images.jianshu.io/upload_images/414598-d44d86f9bae88c1a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
-<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-4" src="http://upload-images.jianshu.io/upload_images/414598-9ecb0228c8a04c61.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-1" src="https://liweiwei1419.github.io/images/sword-for-offer/7-3.jpg" /></p>
+<p><img alt="《剑指 Offer （第 2 版）》第 7 题：重建二叉树-4" src="https://liweiwei1419.github.io/images/sword-for-offer/7-4.jpg" /></p>
 <p>注意：1、编写递归方法的时候，先写特殊情况；</p>
 <p>2、索引是多少不好判断的时候，干脆就用一个具体的例子，就比如我上面画的这个图，把具体的数换成我们使用的变量，这样思考的难度会降低，而且还不容易出错。</p>
 <p>Python 代码：</p>

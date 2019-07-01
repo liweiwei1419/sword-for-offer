@@ -102,6 +102,22 @@
 </li>
                                     
 <li >
+    <a href="../11-旋转数组的最小数字/">11-旋转数组的最小数字</a>
+</li>
+                                    
+<li >
+    <a href="../12-矩阵中的路径/">12-矩阵中的路径</a>
+</li>
+                                    
+<li >
+    <a href="../13-机器人的运动范围/">13-机器人的运动范围</a>
+</li>
+                                    
+<li >
+    <a href="../14-剪绳子/">14-剪绳子</a>
+</li>
+                                    
+<li >
     <a href="../15-二进制中1的个数/">15-二进制中1的个数</a>
 </li>
                                     
@@ -376,15 +392,15 @@
 <p>给定一个链表，若其中包含环，则输出环的入口节点。</p>
 <p>若其中不包含环，则输出<code>null</code>。</p>
 <p>样例：</p>
-<p><img alt="image" src="http://upload-images.jianshu.io/upload_images/414598-a1fd3c7e0fe733b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p><img alt="23-1" src="https://liweiwei1419.github.io/images/sword-for-offer/23-1.png" /></p>
 <p>给定如上所示的链表：<code>[1, 2, 3, 4, 5, 6]</code>，编号：2。
 注意，这里的 2 表示编号是 2 的节点，节点编号从 0 开始。所以编号是 2 的节点就是 val 等于 3 的节点。</p>
 <p>则输出环的入口节点 3 。</p>
 </blockquote>
 <p>分析：看的答案，记住结论就好，编码上还是要注意特判的情况，还有空指针的情况。“慢”指针进入环的时候，“快指针”要来追它，因为快慢指针走的步数差是固定的。例如： A 手上有 100 块钱，A 每天赚 10 块钱，B 手上有 50 块钱，B 每天赚 20，一定有一天，你们的钱相等，而且只要环内结点个数这么多就可以了。</p>
-<p><img alt="image-20190110151143523" src="http://upload-images.jianshu.io/upload_images/414598-0f7504b8155657a5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p><img alt="23-2" src="https://liweiwei1419.github.io/images/sword-for-offer/23-2.jpg" /></p>
 <p>我写的错误解：</p>
-<p><img alt="image-20190109132103035" src="http://upload-images.jianshu.io/upload_images/414598-dfba314018602917.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" /></p>
+<p><img alt="23-3" src="https://liweiwei1419.github.io/images/sword-for-offer/23-3.jpg" /></p>
 <p>Python 代码：</p>
 <pre><code class="python"># 34. 链表中环的入口结点
 # 给定一个链表，若其中包含环，则输出环的入口节点。
